@@ -119,7 +119,7 @@ Sections, top to bottom:
    - Green header strip
    - Icon + title (e.g., "📰 Daily Brief")
    - One-line value prop
-   - Tag row showing input source + output type. Per demo: Daily Brief → "RSS · HTML"; Personal Secretary → "M365 · HTML"; Stakeholder Mgmt → "Markdown · HTML"; Team Mgmt → "Markdown · HTML"
+   - Tag row showing input sources + output type. Per demo: Daily Brief → "RSS · HTML"; Personal Secretary → "M365 · HTML"; Stakeholder Mgmt → "Markdown · M365 · HTML"; Team Mgmt → "Markdown · M365 · HTML"
    - Coral accent line at the bottom
    - Hover: lifts on `--shadow-md`; coral accent line widens
    - Whole card is clickable
@@ -147,9 +147,9 @@ Every code block has a one-click Copy button. The "Step 2 — Run it" block show
 
 All four follow the same structural pattern:
 
-> Read context (markdown files or M365 inputs) → fetch fresh data → render `site/index.html`.
+> Read persistent context (markdown files) + fetch live signal (M365 / RSS / web) → render `site/index.html` → optionally write observations back to the markdown context so the memory grows over time.
 
-This shared spine is the lesson the site teaches. It is called out explicitly on the landing page.
+This shared spine is the lesson the site teaches and is called out explicitly on the landing page. The "memory grows" piece is the unlock for recipes 3 and 4: each time the slash command runs, it can append fresh observations (last contact date, items discussed, follow-ups noted) into the per-person MD files, so the markdown context becomes richer with every use.
 
 ### 1. Daily Brief — `/daily-brief`
 
@@ -167,17 +167,19 @@ This shared spine is the lesson the site teaches. It is called out explicitly on
 
 ### 3. Stakeholder Management — `/stakeholder-update`
 
-- **Inputs:** `stakeholders/<name>.md` per stakeholder, with sections: About / Last Contact / Open Items / Goals / Next Touchpoint
-- **What it does:** reads all stakeholder MDs, surfaces who is stale, lists open items, builds a dashboard HTML — "needs attention now," recent contacts, open items grid, upcoming touchpoints
-- **Customize:** stale threshold, MD template, sections shown
-- **Why directors care:** turn relationship management from memory into a system
+- **Inputs (persistent memory):** `stakeholders/<name>.md` per stakeholder, with sections: About / Last Contact / Open Items / Goals / Next Touchpoint. These files start light and accumulate detail over time.
+- **Inputs (live signal):** Microsoft 365 connector — recent emails to/from each stakeholder, calendar invites involving them, Teams chats. Same M365 plumbing the Personal Secretary recipe uses.
+- **What it does:** reads each stakeholder MD; cross-references with M365 activity from the past N days; surfaces who is stale, who has open items waiting, who you exchanged messages with recently; builds a dashboard HTML — "needs attention now," recent contacts, open items grid, upcoming touchpoints. After rendering, appends a dated entry into each stakeholder's MD file (e.g., "2026-05-06: 3 emails exchanged, calendar invite for next Tues") so the markdown memory keeps growing.
+- **Customize:** stale threshold, M365 lookback window, MD template, sections shown, what observations get appended back
+- **Why directors care:** persistent markdown context plus live M365 signal turns relationship management from a memory game into a self-updating system
 
 ### 4. Team Management — `/team-update`
 
-- **Inputs:** `team/<name>.md` per direct report (Role / Goals / Last 1:1 / Open Items / Strengths / Growth Areas) plus a `notes/` folder with recent 1:1 markdown notes
-- **What it does:** same engine as stakeholder, framed for reports — team-at-a-glance, 1:1 prep cards, open commitments, growth tracker
-- **Customize:** review cadence, "stale" threshold
-- **Why directors care:** walk into 1:1s prepared without spending Sunday night re-reading notes
+- **Inputs (persistent memory):** `team/<name>.md` per direct report (Role / Goals / Last 1:1 / Open Items / Strengths / Growth Areas) plus a `notes/` folder with recent 1:1 markdown notes. Like stakeholders, these files compound over time.
+- **Inputs (live signal):** Microsoft 365 connector — recent 1:1 invites and acceptance, Teams mentions / DMs, emails, calendar density per person. Same M365 plumbing as recipes 2 and 3.
+- **What it does:** same engine as stakeholder, framed for direct reports — reads each team MD plus 1:1 notes, layers in fresh M365 activity, produces team-at-a-glance, 1:1 prep cards (what to revisit since last meeting based on emails / chats / open items), open commitments, growth tracker. Appends dated activity summaries back into each team member's MD file.
+- **Customize:** review cadence, M365 lookback window, "stale" threshold, what gets written back to the MD
+- **Why directors care:** walk into 1:1s prepared without re-reading every chat thread; the markdown record of each direct report deepens automatically every time you run it
 
 ## Tech & repo layout
 
