@@ -945,7 +945,7 @@ Build out one fully-realized detail page for Daily Brief. Tasks 5 will copy this
       <h2>Step 1 — Drop in the slash command</h2>
       <p>Save this file at <code>~/.claude/commands/daily-brief.md</code>:</p>
       <pre class="terminal terminal--file" data-file-path="~/.claude/commands/daily-brief.md">
-<button class="copy-btn" data-copy-from="next-pre" type="button" aria-label="Copy to clipboard">📋 Copy</button>
+<button class="copy-btn" data-copy-from="parent-pre" type="button" aria-label="Copy to clipboard">📋 Copy</button>
 <code>---
 description: Build a daily brief from RSS sources matched to your interests
 ---
@@ -1231,7 +1231,7 @@ Each of the three pages has the same structural elements as Daily Brief (detail 
       <h2>Step 1 — Drop in the slash command</h2>
       <p>Save this file at <code>~/.claude/commands/secretary.md</code>:</p>
       <pre class="terminal terminal--file" data-file-path="~/.claude/commands/secretary.md">
-<button class="copy-btn" data-copy-from="next-pre" type="button" aria-label="Copy to clipboard">📋 Copy</button>
+<button class="copy-btn" data-copy-from="parent-pre" type="button" aria-label="Copy to clipboard">📋 Copy</button>
 <code>---
 description: Build a "Today" page from M365 calendar, email, and Teams
 ---
@@ -1341,7 +1341,7 @@ OUTPUT
       <h2>Step 1 — Drop in the slash command</h2>
       <p>Save this file at <code>~/.claude/commands/stakeholder-update.md</code>:</p>
       <pre class="terminal terminal--file" data-file-path="~/.claude/commands/stakeholder-update.md">
-<button class="copy-btn" data-copy-from="next-pre" type="button" aria-label="Copy to clipboard">📋 Copy</button>
+<button class="copy-btn" data-copy-from="parent-pre" type="button" aria-label="Copy to clipboard">📋 Copy</button>
 <code>---
 description: Update stakeholder dashboard from MD files + M365 activity
 ---
@@ -1457,7 +1457,7 @@ OUTPUT
       <h2>Step 1 — Drop in the slash command</h2>
       <p>Save this file at <code>~/.claude/commands/team-update.md</code>:</p>
       <pre class="terminal terminal--file" data-file-path="~/.claude/commands/team-update.md">
-<button class="copy-btn" data-copy-from="next-pre" type="button" aria-label="Copy to clipboard">📋 Copy</button>
+<button class="copy-btn" data-copy-from="parent-pre" type="button" aria-label="Copy to clipboard">📋 Copy</button>
 <code>---
 description: Update team dashboard from MD files + 1:1 notes + M365 activity
 ---
@@ -1572,7 +1572,7 @@ The navigation links are already wired with `data-key-prev` and `data-key-next` 
 3. Arrow keys are ignored when focus is in a text input or a contenteditable element (none on this site, but defensive).
 4. Clicking any `.copy-btn` copies the right text:
    - If it has `data-copy="..."`, the literal value is copied.
-   - If it has `data-copy-from="next-pre"`, the text content of the next `<pre>` element (excluding the button itself) is copied.
+   - If it has `data-copy-from="parent-pre"`, the text content of the next `<pre>` element (excluding the button itself) is copied.
 5. After clicking, the copy button briefly shows "✓ Copied" (the `.copied` class is added for ~1.2s).
 
 - [ ] **Step 2: Replace the contents of `js/main.js`**
@@ -1602,7 +1602,7 @@ document.addEventListener('keydown', onKey);
 
 const copyTextFromButton = (btn) => {
   if (btn.dataset.copy) return btn.dataset.copy;
-  if (btn.dataset.copyFrom === 'next-pre') {
+  if (btn.dataset.copyFrom === 'parent-pre') {
     // The button is inside a <pre>; copy the <pre>'s text content but
     // strip the button's own label.
     const pre = btn.closest('pre');
