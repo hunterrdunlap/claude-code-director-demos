@@ -336,7 +336,6 @@ Create `demos/personal-secretary.html` (same shell, prev=daily-brief, next=stake
     </div>
     <nav>
       <a href="../demos.html" class="nav-prev">← demos</a>
-      <a href="daily-brief.html" data-key-prev>prev</a>
       <a href="stakeholders.html" class="nav-next" data-key-next>next →</a>
     </nav>
   </header>
@@ -370,7 +369,6 @@ Create `demos/stakeholders.html`:
     </div>
     <nav>
       <a href="../demos.html" class="nav-prev">← demos</a>
-      <a href="personal-secretary.html" data-key-prev>prev</a>
       <a href="team.html" class="nav-next" data-key-next>next →</a>
     </nav>
   </header>
@@ -404,7 +402,6 @@ Create `demos/team.html`:
     </div>
     <nav>
       <a href="../demos.html" class="nav-prev">← demos</a>
-      <a href="stakeholders.html" data-key-prev>prev</a>
       <a href="../demos.html" class="nav-next" data-key-next>back to demos →</a>
     </nav>
   </header>
