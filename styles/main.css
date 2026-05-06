@@ -271,3 +271,85 @@ h3 { font-size: 1.125rem; font-weight: 600; }
   margin: 3rem auto 5rem;
   text-align: center;
 }
+
+/* ============================================================
+   Demos cards
+   ============================================================ */
+.cards-intro {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  margin-bottom: 2rem;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin: 2rem 0 4rem;
+}
+
+@media (max-width: 720px) {
+  .cards { grid-template-columns: 1fr; }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-white);
+  border-radius: 0.75rem;
+  overflow: hidden;
+  color: var(--text-main);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.15s, transform 0.15s;
+  text-decoration: none;
+}
+.card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-3px);
+  text-decoration: none;
+  color: var(--text-main);
+}
+.card:focus-visible { outline: 0; box-shadow: var(--focus-ring); }
+
+.card__strip {
+  height: 6px;
+  background: var(--primary);
+}
+
+.card__body { padding: 1.5rem 1.5rem 1rem; flex-grow: 1; }
+
+.card__icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.card__body h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1.4rem;
+}
+
+.card__body p { margin: 0 0 1rem; color: var(--text-main); }
+
+.card__tags {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  margin-top: auto;
+}
+
+.tag {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  background: var(--bg-base);
+  color: var(--text-muted);
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+}
+
+.card__accent {
+  height: 3px;
+  background: var(--claude-coral);
+  width: 30%;
+  transition: width 0.2s ease-out;
+}
+.card:hover .card__accent { width: 100%; }
