@@ -462,7 +462,7 @@ code {
   display: block;
   font-family: var(--font-mono);
   font-size: 0.75rem;
-  color: var(--text-muted);
+  color: #94a3b8; /* slate-400 — passes AA on #1e293b */
   margin-bottom: 0.75rem;
   padding-bottom: 0.5rem;
   padding-right: 90px; /* keep clear of the absolute-positioned copy button */
