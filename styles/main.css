@@ -118,3 +118,152 @@ h3 { font-size: 1.125rem; font-weight: 600; }
   color: var(--text-main);
 }
 .page-footer-nav a:hover { color: var(--primary); text-decoration: none; }
+
+/* ============================================================
+   Landing page — split hero
+   ============================================================ */
+.split-hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 70vh;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.split-hero__panel {
+  padding: 4rem 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  position: relative;
+}
+
+.split-hero__panel--structure {
+  background: var(--primary);
+  color: var(--bg-white);
+  /* Diagonal cut on the right edge */
+  clip-path: polygon(0 0, 100% 0, calc(100% - 80px) 100%, 0 100%);
+  z-index: 2;
+}
+
+.split-hero__panel--vibe {
+  background: var(--claude-cream);
+  color: var(--text-dark);
+  /* Diagonal cut on the left edge — overlaps with structure panel */
+  clip-path: polygon(80px 0, 100% 0, 100% 100%, 0 100%);
+  margin-left: -80px;
+  padding-left: calc(3rem + 80px);
+  z-index: 1;
+}
+
+.split-hero__label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  opacity: 0.7;
+  margin-bottom: 0.75rem;
+}
+
+.split-hero__copy {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  margin: 0;
+  max-width: 22ch;
+  line-height: 1.4;
+}
+
+.split-hero__tagline {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 700;
+  text-align: center;
+  color: var(--text-dark);
+  pointer-events: none;
+  z-index: 3;
+  margin: 0;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.08);
+}
+
+@media (max-width: 720px) {
+  .split-hero { grid-template-columns: 1fr; min-height: auto; }
+  .split-hero__panel--structure {
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 40px), 0 100%);
+    padding-bottom: 5rem;
+  }
+  .split-hero__panel--vibe {
+    clip-path: polygon(0 40px, 100% 0, 100% 100%, 0 100%);
+    margin-left: 0;
+    margin-top: -40px;
+    padding-left: 3rem;
+    padding-top: 4rem;
+  }
+  .split-hero__tagline { font-size: 2rem; }
+}
+
+/* ============================================================
+   Landing — preview chips
+   ============================================================ */
+.preview-row { padding-top: 3rem; }
+
+.preview-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1rem;
+  background: var(--bg-white);
+  border: 1px solid #e2e8f0;
+  border-radius: 999px;
+  color: var(--text-main);
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: border-color 0.15s, transform 0.1s;
+}
+.chip:hover {
+  border-color: var(--claude-coral);
+  color: var(--text-dark);
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+.chip__icon { font-size: 1.1rem; }
+
+/* ============================================================
+   Landing — how this works
+   ============================================================ */
+.how-bullets {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0;
+  display: grid;
+  gap: 0.5rem;
+  font-size: 1.05rem;
+  max-width: 60ch;
+}
+.how-bullets li {
+  position: relative;
+  padding-left: 1.5rem;
+}
+.how-bullets li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: var(--claude-coral);
+  font-weight: 700;
+}
+
+.cta-section {
+  margin: 3rem auto 5rem;
+  text-align: center;
+}
