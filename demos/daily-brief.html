@@ -19,9 +19,112 @@
       <a href="personal-secretary.html" class="nav-next" data-key-next>next →</a>
     </nav>
   </header>
-  <main class="container">
-    <h1>📰 Daily Brief</h1>
-    <p>Coming soon (Task 4).</p>
+  <main class="container detail">
+    <header class="detail-header">
+      <h1>📰 Daily Brief</h1>
+      <p class="detail-meta">Tools: Claude Code · Node.js</p>
+    </header>
+
+    <section class="detail-section">
+      <h2>What you'll build</h2>
+      <p>A magazine-style HTML page that pulls fresh items from RSS feeds and websites you care about, scores them against your stated interests, and presents a top story plus three to four secondary reads. Refresh by re-running the slash command — the page updates in place.</p>
+      <div class="preview-frame">
+        <img src="../assets/previews/daily-brief.svg" alt="Mock preview of the rendered Daily Brief page" onerror="this.replaceWith(Object.assign(document.createElement('div'),{textContent:'(preview screenshot — added in Task 8)',className:'preview-placeholder'}));">
+      </div>
+    </section>
+
+    <hr class="hairline">
+
+    <section class="detail-section">
+      <h2>What you'll need</h2>
+      <ul class="needs-list">
+        <li>Claude Code installed and signed in</li>
+        <li>A folder you don't mind cluttering (e.g., <code>~/projects/daily-brief</code>)</li>
+        <li>Two short markdown files: <code>interests.md</code> and <code>sources.md</code> (the recipe will create them if missing)</li>
+      </ul>
+    </section>
+
+    <hr class="hairline">
+
+    <section class="detail-section">
+      <h2>Step 1 — Drop in the slash command</h2>
+      <p>Save this file at <code>~/.claude/commands/daily-brief.md</code>:</p>
+      <pre class="terminal terminal--file" data-file-path="~/.claude/commands/daily-brief.md">
+<button class="copy-btn" data-copy-from="next-pre" type="button" aria-label="Copy to clipboard">📋 Copy</button>
+<code>---
+description: Build a daily brief from RSS sources matched to your interests
+---
+
+You are building a daily brief HTML page for a director who wants to start
+their day informed about specific topics.
+
+INPUTS
+- interests.md (in cwd) — bullet list of topics
+- sources.md (in cwd) — list of RSS feeds and URLs
+
+WHAT TO DO
+1. If interests.md or sources.md is missing, create a sensible starter file
+   and tell the user to edit it.
+2. Fetch each source. Extract recent items (last 48h preferred).
+3. Score each item against the interests file. Rank.
+4. Write site/index.html — magazine layout with one top story,
+   three to four secondary stories, and an "also worth a look" list.
+5. Write site/styles.css if it does not exist.
+
+OUTPUT
+- site/index.html
+- site/styles.css (one-time)
+- A short summary in chat: how many items considered, top stories chosen.</code></pre>
+      <p class="copy-source-link">The version above is the slash command body in compact form. The full recipe with notes and customization knobs lives in <a href="../recipes/daily-brief.md">recipes/daily-brief.md</a> — when in doubt, copy from there.</p>
+    </section>
+
+    <section class="detail-section">
+      <h2>Step 2 — Run it</h2>
+      <p>From your project folder, in Claude Code:</p>
+      <pre class="terminal" data-terminal>
+<button class="copy-btn" data-copy="/daily-brief" type="button" aria-label="Copy command">📋 Copy</button>
+<code><span class="prompt">&gt;</span> <span class="cmd">/daily-brief</span>
+<span class="output">✓ Read interests.md (8 topics)
+✓ Read sources.md (12 feeds)
+✓ Fetched 47 fresh items
+✓ Scored and ranked
+✓ Wrote site/index.html
+✓ Top story: "How loan servicers are using AI in 2026"</span></code></pre>
+    </section>
+
+    <section class="detail-section">
+      <h2>Step 3 — See it</h2>
+      <p>Open the rendered page. Either of these works:</p>
+      <pre class="terminal" data-terminal>
+<button class="copy-btn" data-copy="open site/index.html" type="button" aria-label="Copy command">📋 Copy</button>
+<code><span class="prompt">&gt;</span> <span class="cmd">open site/index.html</span></code></pre>
+      <p>Or if you want a real local server (so relative URLs and JSON requests work):</p>
+      <pre class="terminal" data-terminal>
+<button class="copy-btn" data-copy="cd site && python3 -m http.server 8000" type="button" aria-label="Copy command">📋 Copy</button>
+<code><span class="prompt">&gt;</span> <span class="cmd">cd site &amp;&amp; python3 -m http.server 8000</span>
+<span class="output">Serving HTTP on 0.0.0.0 port 8000 ...</span></code></pre>
+    </section>
+
+    <hr class="hairline">
+
+    <section class="detail-section">
+      <h2>Customize</h2>
+      <ul class="needs-list">
+        <li><strong>Interests.</strong> Edit <code>interests.md</code> — bullet list, free-form. Example: "AI in financial services", "loan servicing regulation".</li>
+        <li><strong>Sources.</strong> Edit <code>sources.md</code> — RSS URLs, news sitemaps, even plain article URLs. Mix as you like.</li>
+        <li><strong>Layout.</strong> Tweak the prompt body to change section headings or add a "personal note" block at the top.</li>
+      </ul>
+    </section>
+
+    <section class="detail-section">
+      <h2>Why directors care</h2>
+      <p>Walk into the day knowing what shifted in your domain — without doom-scrolling. The MD-file approach means your interests evolve with you: change a bullet, rerun, and your morning read changes shape immediately.</p>
+    </section>
+
+    <nav class="page-footer-nav">
+      <a href="../demos.html">← demos</a>
+      <a href="personal-secretary.html" data-key-next>Personal Secretary →</a>
+    </nav>
   </main>
   <script type="module" src="../js/main.js"></script>
 </body>

@@ -358,3 +358,137 @@ h3 { font-size: 1.125rem; font-weight: 600; }
   transition: width 0.2s ease-out;
 }
 .card:hover .card__accent { width: 100%; }
+
+/* ============================================================
+   Detail page — header, sections, lists
+   ============================================================ */
+.detail { padding-top: 2rem; padding-bottom: 3rem; }
+
+.detail-header { margin-bottom: 2.5rem; }
+.detail-header h1 { font-size: 2.5rem; margin-bottom: 0.25rem; }
+.detail-meta {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.detail-section { margin: 2rem 0; }
+.detail-section h2 {
+  font-size: 1.5rem;
+  color: var(--primary);
+}
+.detail-section p { max-width: 70ch; }
+
+.needs-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0;
+  display: grid;
+  gap: 0.6rem;
+  max-width: 70ch;
+}
+.needs-list li {
+  position: relative;
+  padding-left: 1.5rem;
+}
+.needs-list li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--primary);
+  font-weight: 700;
+}
+
+code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background: rgba(15, 23, 42, 0.06);
+  padding: 0.1em 0.4em;
+  border-radius: 0.25rem;
+}
+
+.preview-frame {
+  margin: 1.5rem 0;
+  background: var(--bg-white);
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+}
+.preview-placeholder {
+  color: var(--text-muted);
+  font-style: italic;
+  font-size: 0.95rem;
+}
+
+/* ============================================================
+   Terminal / code blocks
+   ============================================================ */
+.terminal {
+  position: relative;
+  background: var(--text-dark);
+  color: #e2e8f0;
+  border-radius: 0.5rem;
+  padding: 1.25rem 1.25rem 1rem;
+  margin: 1rem 0;
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+.terminal code {
+  background: transparent;
+  padding: 0;
+  color: inherit;
+  white-space: pre;
+}
+
+.terminal .prompt { color: var(--claude-coral); font-weight: 700; user-select: none; }
+.terminal .cmd { color: #e2e8f0; }
+.terminal .output { color: var(--primary-soft); }
+
+.terminal--file {
+  background: #1e293b;
+  font-size: 0.8rem;
+}
+.terminal--file::before {
+  content: attr(data-file-path);
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  padding-right: 90px; /* keep clear of the absolute-positioned copy button */
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.copy-btn {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  background: rgba(255,255,255,0.08);
+  color: #e2e8f0;
+  border: 1px solid rgba(255,255,255,0.15);
+  padding: 0.3rem 0.6rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+.copy-btn:hover { background: rgba(255,255,255,0.15); border-color: var(--claude-coral); }
+.copy-btn.copied { background: var(--primary); border-color: var(--primary); }
+.copy-btn:focus-visible { outline: 0; box-shadow: var(--focus-ring); }
+
+.copy-source-link {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin-top: 0.5rem;
+}
