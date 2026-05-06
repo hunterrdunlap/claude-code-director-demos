@@ -47,9 +47,30 @@
     <hr class="hairline">
 
     <section class="detail-section">
-      <h2>Step 1 — Drop in the slash command</h2>
-      <p>Save this file at <code>~/.claude/commands/daily-brief.md</code>:</p>
-      <pre class="terminal terminal--file" data-file-path="~/.claude/commands/daily-brief.md"><button class="copy-btn" data-copy-from="parent-pre" type="button" aria-label="Copy to clipboard">📋 Copy</button><code>---
+      <h2>Step 1 — Ask Claude to build your slash command</h2>
+      <p>Open Claude Code in any folder. Paste this prompt, swap your specifics into the <span class="prompt-block__placeholder">[FILL IN: ...]</span> placeholders, and hit enter. Claude will write the slash command file at <code>~/.claude/commands/daily-brief.md</code> for you.</p>
+      <pre class="prompt-block"><button class="copy-btn copy-btn--light" data-copy-from="parent-pre" type="button" aria-label="Copy prompt">📋 Copy</button>Create a Claude Code slash command at ~/.claude/commands/daily-brief.md.
+
+The /daily-brief command should pull fresh items from RSS feeds I care about, score them against my interests, and write a magazine-style site/index.html — one top story, three to four secondary stories, and an "also worth a look" list. It should read interests.md and sources.md from the current directory, creating starters if they don't exist.
+
+For my starter files, use:
+
+Interests:
+- <span class="prompt-block__placeholder">[FILL IN: e.g., "AI in financial services", "student loan policy", "loan servicer M&amp;A"]</span>
+
+Sources:
+- <span class="prompt-block__placeholder">[FILL IN: e.g., Reuters business RSS, WSJ news RSS, CFPB blog feed]</span>
+
+Layout preference:
+- <span class="prompt-block__placeholder">[FILL IN: e.g., "magazine-style with serif headlines and a 'personal note' section at the top"]</span>
+
+Write the file with proper YAML frontmatter (description: ...) and a clear prompt body so the command works on the first run.</pre>
+
+      <details class="reveal">
+        <summary>What the generated file should look like</summary>
+        <div class="reveal__body">
+          <p>Claude should write something close to this at <code>~/.claude/commands/daily-brief.md</code>:</p>
+          <pre class="terminal terminal--file" data-file-path="~/.claude/commands/daily-brief.md"><button class="copy-btn" data-copy-from="parent-pre" type="button" aria-label="Copy file content">📋 Copy</button><code>---
 description: Build a daily brief from RSS sources matched to your interests
 ---
 
@@ -73,7 +94,9 @@ OUTPUT
 - site/index.html
 - site/styles.css (one-time)
 - A short summary in chat: how many items considered, top stories chosen.</code></pre>
-      <p class="copy-source-link">The version above is the slash command body in compact form. The full recipe with notes and customization knobs lives in <a href="../recipes/daily-brief.md">recipes/daily-brief.md</a> — when in doubt, copy from there.</p>
+          <p class="copy-source-link">Reference copy lives at <a href="../recipes/daily-brief.md">recipes/daily-brief.md</a>.</p>
+        </div>
+      </details>
     </section>
 
     <section class="detail-section">

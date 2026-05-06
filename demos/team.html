@@ -47,9 +47,35 @@
     <hr class="hairline">
 
     <section class="detail-section">
-      <h2>Step 1 — Drop in the slash command</h2>
-      <p>Save this file at <code>~/.claude/commands/team-update.md</code>:</p>
-      <pre class="terminal terminal--file" data-file-path="~/.claude/commands/team-update.md"><button class="copy-btn" data-copy-from="parent-pre" type="button" aria-label="Copy to clipboard">📋 Copy</button><code>---
+      <h2>Step 1 — Ask Claude to build your slash command</h2>
+      <p>Open Claude Code in any folder. Paste this prompt, swap your specifics into the <span class="prompt-block__placeholder">[FILL IN: ...]</span> placeholders, and hit enter. Claude will write the slash command file at <code>~/.claude/commands/team-update.md</code> for you.</p>
+      <pre class="prompt-block"><button class="copy-btn copy-btn--light" data-copy-from="parent-pre" type="button" aria-label="Copy prompt">📋 Copy</button>Create a Claude Code slash command at ~/.claude/commands/team-update.md.
+
+The /team-update command should:
+1. Read team/&lt;name&gt;.md per direct report (sections: Role, Goals, Last 1:1, Open Items, Strengths, Growth Areas)
+2. Read every 1:1 note in notes/ (filenames like YYYY-MM-DD-firstname.md)
+3. Query Microsoft 365 per report (1:1 invites, Teams mentions/DMs, emails, calendar density) over the lookback window
+4. Render site/index.html with team-at-a-glance, 1:1 prep cards, open commitments, growth tracker
+5. Append a dated activity summary into each report's MD under "Recent activity"
+
+If the team/ folder is empty, scaffold one example file using these defaults:
+
+My direct reports:
+- <span class="prompt-block__placeholder">[FILL IN: e.g., "Sara Patel — engineering lead", "Marcus Lee — PM", "Avery Chen — data analyst"]</span>
+
+My 1:1 cadence:
+- <span class="prompt-block__placeholder">[FILL IN: e.g., "weekly on Monday afternoons"]</span>
+
+What I track per report (default sections):
+- <span class="prompt-block__placeholder">[FILL IN: default — Role, Goals, Last 1:1, Open Items, Strengths, Growth Areas]</span>
+
+Write proper YAML frontmatter and a clear prompt body. The write-back step should be idempotent per day.</pre>
+
+      <details class="reveal">
+        <summary>What the generated file should look like</summary>
+        <div class="reveal__body">
+          <p>Claude should write something close to this at <code>~/.claude/commands/team-update.md</code>:</p>
+          <pre class="terminal terminal--file" data-file-path="~/.claude/commands/team-update.md"><button class="copy-btn" data-copy-from="parent-pre" type="button" aria-label="Copy file content">📋 Copy</button><code>---
 description: Update team dashboard from MD files + 1:1 notes + M365 activity
 ---
 
@@ -84,7 +110,9 @@ OUTPUT
 - site/index.html, site/styles.css (one-time)
 - Updated team/&lt;name&gt;.md files
 - A short summary in chat.</code></pre>
-      <p class="copy-source-link">The version above is the slash command body in compact form. The full recipe with notes and customization knobs lives in <a href="../recipes/team-update.md">recipes/team-update.md</a> — when in doubt, copy from there.</p>
+          <p class="copy-source-link">Reference copy lives at <a href="../recipes/team-update.md">recipes/team-update.md</a>.</p>
+        </div>
+      </details>
     </section>
 
     <section class="detail-section">

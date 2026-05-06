@@ -47,9 +47,34 @@
     <hr class="hairline">
 
     <section class="detail-section">
-      <h2>Step 1 — Drop in the slash command</h2>
-      <p>Save this file at <code>~/.claude/commands/stakeholder-update.md</code>:</p>
-      <pre class="terminal terminal--file" data-file-path="~/.claude/commands/stakeholder-update.md"><button class="copy-btn" data-copy-from="parent-pre" type="button" aria-label="Copy to clipboard">📋 Copy</button><code>---
+      <h2>Step 1 — Ask Claude to build your slash command</h2>
+      <p>Open Claude Code in any folder. Paste this prompt, swap your specifics into the <span class="prompt-block__placeholder">[FILL IN: ...]</span> placeholders, and hit enter. Claude will write the slash command file at <code>~/.claude/commands/stakeholder-update.md</code> for you.</p>
+      <pre class="prompt-block"><button class="copy-btn copy-btn--light" data-copy-from="parent-pre" type="button" aria-label="Copy prompt">📋 Copy</button>Create a Claude Code slash command at ~/.claude/commands/stakeholder-update.md.
+
+The /stakeholder-update command should:
+1. Read every file in stakeholders/&lt;name&gt;.md (sections: About / Last Contact / Open Items / Goals / Next Touchpoint)
+2. Query Microsoft 365 for recent activity per stakeholder (emails, calendar invites, Teams chats) over the lookback window
+3. Render site/index.html with sections: Needs attention now, Recent contacts, Open items grid, Upcoming touchpoints
+4. Append a dated "Recent activity" entry into each stakeholder's MD file so the record deepens with every run
+
+If the stakeholders/ folder is empty, scaffold one example file using these as my defaults:
+
+My stakeholders (a few to start — I'll add more later):
+- <span class="prompt-block__placeholder">[FILL IN: e.g., "Jane Park — VP Operations at Acme Corp; quarterly business reviews", "Marcus Lee — vendor lead at FinTech Inc; mid-sized contract"]</span>
+
+Stale threshold (days without contact before flagged):
+- <span class="prompt-block__placeholder">[FILL IN: default 30 days]</span>
+
+Microsoft 365 lookback window:
+- <span class="prompt-block__placeholder">[FILL IN: default 14 days]</span>
+
+Write proper YAML frontmatter and a clear prompt body. The write-back step should be idempotent per day.</pre>
+
+      <details class="reveal">
+        <summary>What the generated file should look like</summary>
+        <div class="reveal__body">
+          <p>Claude should write something close to this at <code>~/.claude/commands/stakeholder-update.md</code>:</p>
+          <pre class="terminal terminal--file" data-file-path="~/.claude/commands/stakeholder-update.md"><button class="copy-btn" data-copy-from="parent-pre" type="button" aria-label="Copy file content">📋 Copy</button><code>---
 description: Update stakeholder dashboard from MD files + M365 activity
 ---
 
@@ -84,7 +109,9 @@ OUTPUT
 - site/index.html, site/styles.css (one-time)
 - Updated stakeholders/&lt;name&gt;.md files
 - A short summary in chat: who needs attention, what was appended.</code></pre>
-      <p class="copy-source-link">The version above is the slash command body in compact form. The full recipe with notes and customization knobs lives in <a href="../recipes/stakeholder-update.md">recipes/stakeholder-update.md</a> — when in doubt, copy from there.</p>
+          <p class="copy-source-link">Reference copy lives at <a href="../recipes/stakeholder-update.md">recipes/stakeholder-update.md</a>.</p>
+        </div>
+      </details>
     </section>
 
     <section class="detail-section">
