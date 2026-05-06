@@ -580,3 +580,151 @@ code {
 
 .reveal__body { padding: 1rem 1rem 1.25rem; }
 .reveal__body > p:first-child { margin-top: 0; }
+
+/* ============================================================
+   Tools page — hero, grid, editorial scroll
+   ============================================================ */
+.tools-hero {
+  padding-top: 4rem;
+  padding-bottom: 1rem;
+  text-align: center;
+}
+.tools-hero h1 {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  margin-bottom: 1rem;
+}
+.tools-hero__lead {
+  font-size: 1.125rem;
+  max-width: 60ch;
+  margin: 0 auto;
+  color: var(--text-main);
+}
+
+.tools-section-title {
+  text-align: center;
+  margin: 3rem 0 1.5rem;
+  color: var(--primary);
+}
+
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin: 0 0 3rem;
+}
+@media (max-width: 960px) {
+  .tools-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+  .tools-grid { grid-template-columns: 1fr; }
+}
+
+.tool-tile {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-white);
+  border-radius: 0.75rem;
+  padding: 1.25rem 1rem 1.1rem;
+  text-decoration: none;
+  color: var(--text-main);
+  border: 1px solid #e2e8f0;
+  transition: transform 0.1s, box-shadow 0.15s, border-color 0.15s;
+  text-align: left;
+}
+.tool-tile:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--claude-coral);
+  text-decoration: none;
+  color: var(--text-main);
+}
+.tool-tile:focus-visible {
+  outline: 0;
+  box-shadow: var(--focus-ring);
+}
+.tool-tile__icon {
+  font-size: 1.75rem;
+  margin-bottom: 0.5rem;
+}
+.tool-tile__name {
+  font-weight: 600;
+  color: var(--text-dark);
+  font-size: 1.05rem;
+  margin-bottom: 0.3rem;
+}
+.tool-tile__line {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+.tool-tile__line code {
+  font-size: 0.95em;
+  background: rgba(15, 23, 42, 0.06);
+  padding: 0.1em 0.3em;
+  border-radius: 0.2rem;
+}
+
+.tools-detail { padding-bottom: 2rem; }
+
+.tool-section {
+  margin: 3rem auto;
+  scroll-margin-top: 2rem;
+  max-width: 70ch;
+}
+.tool-section h2 {
+  font-size: 1.75rem;
+  color: var(--primary);
+  margin-bottom: 0.75rem;
+}
+.tool-section p {
+  font-size: 1.05rem;
+  line-height: 1.65;
+}
+
+/* ============================================================
+   "Built from" chip row (used on detail pages — Task 3)
+   ============================================================ */
+.built-from {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  margin-top: 0.75rem;
+}
+.built-from__label {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-right: 0.25rem;
+}
+
+.tool-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.8rem;
+  background: var(--bg-white);
+  border: 1px solid #e2e8f0;
+  border-radius: 999px;
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: border-color 0.15s, transform 0.1s, color 0.15s;
+}
+.tool-chip:hover {
+  border-color: var(--claude-coral);
+  color: var(--text-dark);
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+.tool-chip:focus-visible {
+  outline: 0;
+  box-shadow: var(--focus-ring);
+}
+.tool-chip__icon {
+  font-size: 1rem;
+}

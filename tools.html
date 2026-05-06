@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What's in the toolbox · Vibe Coding for Directors</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/main.css">
+</head>
+<body data-page="tools">
+  <header class="topbar">
+    <div class="brand">
+      <img src="assets/nelnet-wordmark.svg" alt="Nelnet" onerror="this.replaceWith(Object.assign(document.createElement('span'),{textContent:'Nelnet · NFS'}));">
+    </div>
+    <nav>
+      <a href="index.html" class="nav-prev" data-key-prev>← back</a>
+      <a href="demos.html" class="nav-next" data-key-next>next →</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="tools-hero container">
+      <h1>An agent in your terminal</h1>
+      <p class="tools-hero__lead">Claude Code reads your files, runs your commands, fetches the web, talks to your business tools, and remembers what you tell it. You decide what to build; Claude composes the work using a small set of tools.</p>
+    </section>
+
+    <section class="container">
+      <h2 class="tools-section-title">What's in the toolbox</h2>
+      <div class="tools-grid">
+        <a class="tool-tile" href="#files-and-commands">
+          <div class="tool-tile__icon">📁</div>
+          <div class="tool-tile__name">Files &amp; commands</div>
+          <div class="tool-tile__line">Claude's hands on your computer.</div>
+        </a>
+        <a class="tool-tile" href="#web-fetch">
+          <div class="tool-tile__icon">🌐</div>
+          <div class="tool-tile__name">Web fetch</div>
+          <div class="tool-tile__line">Pull anything from the open web.</div>
+        </a>
+        <a class="tool-tile" href="#microsoft-365">
+          <div class="tool-tile__icon">📅</div>
+          <div class="tool-tile__name">Microsoft 365</div>
+          <div class="tool-tile__line">Your work data — calendar, email, Teams, SharePoint.</div>
+        </a>
+        <a class="tool-tile" href="#persistent-memory">
+          <div class="tool-tile__icon">🧠</div>
+          <div class="tool-tile__name">Persistent memory</div>
+          <div class="tool-tile__line">Markdown files Claude reads every time.</div>
+        </a>
+        <a class="tool-tile" href="#custom-commands">
+          <div class="tool-tile__icon">⚡</div>
+          <div class="tool-tile__name">Custom commands</div>
+          <div class="tool-tile__line">Package a workflow as <code>/your-command</code>.</div>
+        </a>
+        <a class="tool-tile" href="#more-connectors">
+          <div class="tool-tile__icon">🔌</div>
+          <div class="tool-tile__name">More connectors</div>
+          <div class="tool-tile__line">Slack, Jira, Salesforce, Notion, databases.</div>
+        </a>
+        <a class="tool-tile" href="#sub-agents">
+          <div class="tool-tile__icon">🤝</div>
+          <div class="tool-tile__name">Sub-agents</div>
+          <div class="tool-tile__line">Specialist helpers running on the side.</div>
+        </a>
+        <a class="tool-tile" href="#hooks">
+          <div class="tool-tile__icon">🪝</div>
+          <div class="tool-tile__name">Hooks</div>
+          <div class="tool-tile__line">Automatic triggers and guardrails.</div>
+        </a>
+      </div>
+    </section>
+
+    <hr class="hairline">
+
+    <section class="container tools-detail">
+      <article class="tool-section" id="files-and-commands">
+        <h2>📁 Files &amp; commands</h2>
+        <p>Read and write files, run shell commands, search a project. The foundation under everything else — when Claude saves an HTML page, scaffolds a folder structure, or runs a small script, this is what it's using. Claude only does what you say; you can review every action before it lands.</p>
+      </article>
+
+      <article class="tool-section" id="web-fetch">
+        <h2>🌐 Web fetch</h2>
+        <p>RSS feeds, sitemaps, public articles, JSON APIs. Lets Claude bring the outside world into your work — recent news, regulatory filings, competitor blogs, public datasets. If a human can read it in a browser, Claude can fetch and summarize it.</p>
+      </article>
+
+      <article class="tool-section" id="microsoft-365">
+        <h2>📅 Microsoft 365</h2>
+        <p>The connector that makes Claude useful inside Nelnet specifically. Reads (and with permission, writes) across the M365 surface — your calendar, unread email, Teams mentions, SharePoint files. Today's MFA prompt is the only step between Claude and your work data.</p>
+      </article>
+
+      <article class="tool-section" id="persistent-memory">
+        <h2>🧠 Persistent memory</h2>
+        <p>Notes you write once that load every session. A list of your interests, a folder of stakeholder profiles, your team's growth-area notes. The longer you use Claude, the smarter your memory gets — every run can append fresh observations back into your markdown so the record deepens automatically.</p>
+      </article>
+
+      <article class="tool-section" id="custom-commands">
+        <h2>⚡ Custom commands</h2>
+        <p>Slash commands turn a recurring prompt into one keystroke. Once you've described what <code>/standup</code> or <code>/weekly-update</code> should do, you never have to describe it again — just type the command. Yours forever, copyable, shareable across your team.</p>
+      </article>
+
+      <article class="tool-section" id="more-connectors">
+        <h2>🔌 More connectors</h2>
+        <p>M365 is just one entry in the wider connector ecosystem. Most tools your team already uses have an MCP connector — Slack, Jira, Salesforce, Notion, Linear, Postgres, Snowflake. If a tool has an API and matters to your team, a connector probably exists or can be built.</p>
+      </article>
+
+      <article class="tool-section" id="sub-agents">
+        <h2>🤝 Sub-agents</h2>
+        <p>Spawn focused side-conversations for specific tasks — a research agent that scrapes documentation, a code-reviewer that checks PRs, a summarizer that condenses long meeting transcripts. Sub-agents keep your main session uncluttered while still doing real work behind the scenes.</p>
+      </article>
+
+      <article class="tool-section" id="hooks">
+        <h2>🪝 Hooks</h2>
+        <p>Wire Claude up to fire (or block) certain actions automatically. Run tests before every commit, lint after every edit, alert on sensitive data, refuse risky shell commands. Hooks turn good intentions into team policy that actually runs.</p>
+      </article>
+    </section>
+
+    <section class="container cta-section">
+      <a href="demos.html" class="cta-btn">See how this all comes together →</a>
+    </section>
+  </main>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
