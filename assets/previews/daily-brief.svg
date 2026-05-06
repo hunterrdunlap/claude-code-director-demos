@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 360" role="img" aria-label="Daily Brief preview">
+  <rect width="600" height="360" fill="#FAF7F2" rx="8"/>
+  <text x="32" y="40" font-family="'Source Serif 4', Georgia, serif" font-size="22" font-weight="700" fill="#0f172a">Daily Brief — May 6, 2026</text>
+  <line x1="32" y1="56" x2="568" y2="56" stroke="#e2e8f0"/>
+
+  <!-- Top story -->
+  <text x="32" y="92" font-family="'Source Serif 4', serif" font-size="18" font-weight="700" fill="#11891C">Top Story</text>
+  <rect x="32" y="104" width="320" height="100" fill="#fff" stroke="#e2e8f0" rx="4"/>
+  <text x="44" y="128" font-family="'Source Serif 4', serif" font-size="15" font-weight="700" fill="#0f172a">How loan servicers are using AI in 2026</text>
+  <text x="44" y="148" font-family="'Inter', sans-serif" font-size="11" fill="#64748b">Reuters · 4h ago</text>
+  <text x="44" y="170" font-family="'Inter', sans-serif" font-size="11" fill="#334155">A look at how three major servicers</text>
+  <text x="44" y="184" font-family="'Inter', sans-serif" font-size="11" fill="#334155">are deploying LLMs in customer ops…</text>
+
+  <!-- Secondary -->
+  <text x="372" y="92" font-family="'Source Serif 4', serif" font-size="14" font-weight="700" fill="#11891C">Secondary</text>
+  <rect x="372" y="104" width="196" height="44" fill="#fff" stroke="#e2e8f0" rx="4"/>
+  <text x="380" y="124" font-family="'Source Serif 4', serif" font-size="11" font-weight="700" fill="#0f172a">CFPB issues new guidance…</text>
+  <text x="380" y="138" font-family="'Inter', sans-serif" font-size="9" fill="#64748b">CFPB.gov · 7h</text>
+  <rect x="372" y="156" width="196" height="44" fill="#fff" stroke="#e2e8f0" rx="4"/>
+  <text x="380" y="176" font-family="'Source Serif 4', serif" font-size="11" font-weight="700" fill="#0f172a">Banking quarterly earnings preview</text>
+  <text x="380" y="190" font-family="'Inter', sans-serif" font-size="9" fill="#64748b">WSJ · 1d</text>
+  <rect x="372" y="208" width="196" height="44" fill="#fff" stroke="#e2e8f0" rx="4"/>
+  <text x="380" y="228" font-family="'Source Serif 4', serif" font-size="11" font-weight="700" fill="#0f172a">Student loan forgiveness ruling</text>
+  <text x="380" y="242" font-family="'Inter', sans-serif" font-size="9" fill="#64748b">NYT · 1d</text>
+
+  <!-- Also worth a look -->
+  <text x="32" y="240" font-family="'Source Serif 4', serif" font-size="14" font-weight="700" fill="#11891C">Also worth a look</text>
+  <text x="32" y="262" font-family="'Inter', sans-serif" font-size="11" fill="#334155">→ Treasury yields tick up on Fed signal</text>
+  <text x="32" y="282" font-family="'Inter', sans-serif" font-size="11" fill="#334155">→ Three fintechs raise Series B</text>
+  <text x="32" y="302" font-family="'Inter', sans-serif" font-size="11" fill="#334155">→ New IRS rules for refinanced loans</text>
+
+  <!-- Coral footer accent -->
+  <rect x="0" y="354" width="600" height="6" fill="#D97757"/>
+</svg>
