@@ -33,7 +33,7 @@
 
     <section class="detail-section">
       <h2>What you'll build</h2>
-      <p>A magazine-style HTML page that pulls fresh items from RSS feeds and websites you care about, scores them against your stated interests, and presents a top story plus three to four secondary reads. Refresh by re-running the slash command — the page updates in place.</p>
+      <p>A magazine-style HTML page that pulls fresh items from <strong>public news sources on the open web</strong> — RSS feeds, industry sites, government feeds — scores them against your stated interests, and presents a top story plus three to four secondary reads. This is your view of the outside world. It does <em>not</em> read your calendar, inbox, or Teams; that's the Personal Secretary's job.</p>
       <div class="preview-frame">
         <img src="../assets/previews/daily-brief.svg" alt="Mock preview of the rendered Daily Brief page" onerror="this.replaceWith(Object.assign(document.createElement('div'),{textContent:'(preview screenshot — added in Task 8)',className:'preview-placeholder'}));">
       </div>
@@ -57,14 +57,19 @@
       <p>Open Claude Code in any folder. Paste this prompt, swap your specifics into the <span class="prompt-block__placeholder">[FILL IN: ...]</span> placeholders, and hit enter. Claude will write the slash command file at <code>~/.claude/commands/daily-brief.md</code> for you.</p>
       <pre class="prompt-block"><button class="copy-btn copy-btn--light" data-copy-from="parent-pre" type="button" aria-label="Copy prompt">📋 Copy</button>Create a Claude Code slash command at ~/.claude/commands/daily-brief.md.
 
-The /daily-brief command should pull fresh items from RSS feeds I care about, score them against my interests, and write a magazine-style site/index.html — one top story, three to four secondary stories, and an "also worth a look" list. It should read interests.md and sources.md from the current directory, creating starters if they don't exist.
+The /daily-brief command builds a magazine-style site/index.html that summarizes what's happening in the wider world on topics I care about. It should pull fresh items from external, public news sources only — using the WebFetch tool against the RSS feeds and URLs I list. Score items against my interests and produce one top story, three to four secondary stories, and an "also worth a look" list. Read interests.md and sources.md from the current directory; create starters if they don't exist.
+
+SCOPE — IMPORTANT:
+- External sources only. Public web, RSS feeds, news sitemaps, industry blogs.
+- Do NOT read my Microsoft 365 calendar, email, Teams, or SharePoint. Do not call any M365 connector. This is an outside-the-walls news brief, not a daily plan.
+- If sources.md is empty, write a starter file and stop — do not substitute internal data.
 
 For my starter files, use:
 
 Interests:
 - <span class="prompt-block__placeholder">[FILL IN: e.g., "AI in financial services", "student loan policy", "loan servicer M&amp;A"]</span>
 
-Sources:
+Sources (external news only — RSS feeds and public URLs):
 - <span class="prompt-block__placeholder">[FILL IN: e.g., Reuters business RSS, WSJ news RSS, CFPB blog feed]</span>
 
 Layout preference:
@@ -77,20 +82,27 @@ Write the file with proper YAML frontmatter (description: ...) and a clear promp
         <div class="reveal__body">
           <p>Claude should write something close to this at <code>~/.claude/commands/daily-brief.md</code>:</p>
           <pre class="terminal terminal--file" data-file-path="~/.claude/commands/daily-brief.md"><button class="copy-btn" data-copy-from="parent-pre" type="button" aria-label="Copy file content">📋 Copy</button><code>---
-description: Build a daily brief from RSS sources matched to your interests
+description: Build a daily brief from EXTERNAL news sources matched to your interests
 ---
 
-You are building a daily brief HTML page for a director who wants to start
-their day informed about specific topics.
+You are building a daily brief HTML page that summarizes what's happening
+in the wider world on topics the user cares about.
+
+SCOPE
+- External public sources only — RSS feeds, news sites, industry blogs,
+  government feeds. Use the WebFetch tool.
+- Do NOT read Microsoft 365 (calendar, email, Teams, SharePoint) or any
+  internal connector. This is an outside-the-walls news brief, not a
+  daily plan. The Personal Secretary handles internal data.
 
 INPUTS
 - interests.md (in cwd) — bullet list of topics
-- sources.md (in cwd) — list of RSS feeds and URLs
+- sources.md (in cwd) — list of external RSS feeds and public URLs
 
 WHAT TO DO
 1. If interests.md or sources.md is missing, create a sensible starter file
-   and tell the user to edit it.
-2. Fetch each source. Extract recent items (last 48h preferred).
+   and tell the user to edit it. Do not substitute internal data.
+2. WebFetch each source. Extract recent items (last 48h preferred).
 3. Score each item against the interests file. Rank.
 4. Write site/index.html — magazine layout with one top story,
    three to four secondary stories, and an "also worth a look" list.
