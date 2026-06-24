@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Organize Case File · Vibe Coding with Claude Code</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles/main.css">
+</head>
+<body data-page="organize-case-file">
+  <header class="topbar">
+    <div class="brand">
+      <img src="../assets/nelnet-wordmark.svg" alt="Nelnet" onerror="this.replaceWith(Object.assign(document.createElement('span'),{textContent:'Nelnet'}));">
+    </div>
+    <nav>
+      <a href="document-digest.html" class="nav-prev" data-key-prev>← Document Digest</a>
+      <a href="draft-from-case-file.html" class="nav-next" data-key-next>next →</a>
+    </nav>
+  </header>
+  <main class="container detail">
+    <header class="detail-header">
+      <h1>🗂️ Organize Case File</h1>
+      <div class="built-from">
+        <span class="built-from__label">Built from</span>
+        <a class="tool-chip" href="../tools.html#files-and-commands"><span class="tool-chip__icon">📁</span> Files &amp; commands</a>
+        <a class="tool-chip" href="../tools.html#sub-agents"><span class="tool-chip__icon">🤝</span> Sub-agents</a>
+        <a class="tool-chip" href="../tools.html#custom-commands"><span class="tool-chip__icon">⚡</span> Custom commands</a>
+      </div>
+    </header>
+
+    <section class="detail-section">
+      <h2>What you'll do</h2>
+      <p>Point Claude at a <strong>messy folder</strong> — loose PDFs and Word docs, statements, correspondence, ACDVs, zip files with more zips inside — and get back a clean, numbered <code>organized/</code> tree of <strong>renamed copies</strong>, with a per-folder README, a master index, and a reconstructed timeline. Your originals are never touched. The index it builds is what the next workflow drafts from.</p>
+      <div class="preview-frame">
+        <div class="preview-placeholder">A 200-file dump → an organized/ tree by litigation lifecycle, fully indexed.</div>
+      </div>
+    </section>
+
+    <hr class="hairline">
+
+    <section class="detail-section">
+      <h2>This one's already a skill</h2>
+      <p>Organizing case files is a repeatable job, so it's packaged as the <strong><code>organize-for-me</code> skill</strong> — a saved set of instructions Claude already knows. If it's installed, you can just say <code>/organize-for-me</code> (or ask Claude to "organize this folder") and it runs. The prompt below is the plain-language version of what that skill does, so the behavior is the same either way.</p>
+    </section>
+
+    <section class="detail-section">
+      <h2>What you'll need</h2>
+      <ul class="needs-list">
+        <li>Claude Cowork open on an approved, no-training tier (see <a href="legal-data-handling.html">Working safely with client data</a>)</li>
+        <li>The case folder you want organized — in whatever state it's in</li>
+        <li>A backup of that folder first (the run copies, never moves — but back up anyway)</li>
+      </ul>
+    </section>
+
+    <hr class="hairline">
+
+    <section class="detail-section">
+      <h2>Step 1 — Open the folder in Cowork</h2>
+      <p>Point Cowork at the case folder. Everything it writes goes into a new <code>organized/</code> subfolder; nothing outside it is renamed, moved, or deleted.</p>
+    </section>
+
+    <section class="detail-section">
+      <h2>Step 2 — Paste this into Cowork</h2>
+      <p>If the <code>organize-for-me</code> skill is installed, you can skip the paste and just run <code>/organize-for-me</code>. Either way, this is the instruction:</p>
+      <pre class="prompt-block"><button class="copy-btn copy-btn--light" data-copy-from="parent-pre" type="button" aria-label="Copy prompt">📋 Copy</button>Organize this folder of case files so I can actually use it. It's a mess of PDFs, Word docs, statements, correspondence, and zip files — some with zips inside them.
+
+Please:
+- Look at everything first, and extract every zip (including zips inside zips).
+- Read the documents by fanning out sub-agents in parallel — one per document, grouping small similar files — so it goes fast. For each file, note its type, its date, a short summary, the dated events in it, and anything odd (missing pages, exposed personal info).
+- Copy — never move — every file into a clean, numbered folder structure under organized/, renamed like "2025-02-14 ACDV Response.pdf". Put anything you can't read or place into organized/99-Unclassified/ — never drop a file silently.
+- Build the index: a _README.md in each folder, a master organized/README.md with a case summary and a table mapping every new file back to where it came from, and organized/TIMELINE.md with every dated event in order, each citing its source.
+- When you're done, check that the number of files in organized/ matches what you started with, and confirm you didn't touch anything outside organized/.
+
+Leave my original files exactly as they are — the original layout is evidence. The only thing you create is the organized/ folder. If a file is password-protected or unreadable, flag it rather than skipping it. If an organized/ folder already exists, don't overwrite or merge into it — tell me and ask first. And if anything is unclear — you can't tell which files belong to this case, or there's a file type you don't recognize — stop and ask me before going ahead rather than guessing.</pre>
+    </section>
+
+    <section class="detail-section">
+      <h2>What Cowork does</h2>
+      <p>The heavy lifting is <strong>Phase 2</strong>: instead of reading hundreds of files one-by-one (which is slow and fills up Claude's memory), it dispatches a fleet of <strong>sub-agents</strong> that read in parallel — each returns a small structured note about its file. Those notes become the index.</p>
+      <pre class="terminal" data-terminal><button class="copy-btn" data-copy-from="parent-pre" type="button" aria-label="Copy output">📋 Copy</button><code><span class="output">Phase 1 · Inventory
+  Found 213 files (47 of them inside 6 zips — extracted)
+Phase 2 · Understand — fanning out sub-agents
+  Dispatched 28 readers in parallel (small files batched):
+  ├─ payment statements (12) ........ done
+  ├─ ACDV responses (9) ............. done
+  ├─ correspondence (31) ............ done
+  ├─ forbearance letters (7) ........ done
+  └─ … 24 more batches .............. done
+Phase 3 · Arrange — copying into organized/ (originals untouched)
+Phase 4 · Document &amp; verify
+  Wrote 6 folder READMEs + organized/README.md + organized/TIMELINE.md
+  ✓ 213 files in organized/ == 213 inventoried
+  ✓ nothing outside organized/ changed
+  ⚠ 2 files → 99-Unclassified (1 password-protected, 1 corrupt)</span></code></pre>
+    </section>
+
+    <section class="detail-section">
+      <h2>What you get</h2>
+      <p>A predictable tree by litigation lifecycle — the same shape every case, so you always know where to look:</p>
+      <pre class="terminal" data-terminal><button class="copy-btn" data-copy-from="parent-pre" type="button" aria-label="Copy output">📋 Copy</button><code><span class="output">organized/
+├─ README.md            ← case snapshot + manifest (the index)
+├─ TIMELINE.md          ← every dated event, each sourced
+├─ 01-Loan-Origination/
+├─ 02-Servicing-and-Payments/
+├─ 03-Disputes-and-Credit-Reporting/
+├─ 04-Correspondence/
+│  ├─ Incoming/
+│  └─ Outgoing/
+├─ 05-Government-and-Program/
+└─ 99-Unclassified/     ← unreadable / unplaceable, never dropped</span></code></pre>
+      <details class="reveal">
+        <summary>What organized/README.md looks like</summary>
+        <div class="reveal__body">
+          <p>The master index: a snapshot, a folder map, a manifest that traces every copy back to its original, and the flags your sub-agents raised.</p>
+          <pre class="terminal terminal--file" data-file-path="organized/README.md"><button class="copy-btn" data-copy-from="parent-pre" type="button" aria-label="Copy file content">📋 Copy</button><code># Case File — J. Borrower / Acct ****1234
+
+## Case snapshot
+Loan-servicing dispute: borrower alleges mis-reported late payments after a
+2024 forbearance. File spans origination (2019) through a 2025 ACDV exchange.
+
+## Folder map
+- 01-Loan-Origination — disclosures, promissory note
+- 02-Servicing-and-Payments — statements, payment history, forbearance
+- 03-Disputes-and-Credit-Reporting — ACDVs, dispute letters
+- 04-Correspondence — borrower letters, incoming &amp; outgoing
+- 05-Government-and-Program — NSLDS, IDR records
+- 99-Unclassified — 2 files (1 password-protected, 1 corrupt)
+
+## Manifest (excerpt)
+| Organized file | Original source |
+| --- | --- |
+| 02-Servicing-and-Payments/2024-08-01 Forbearance Approval.pdf | dump/scan0098.pdf |
+| 03-Disputes-and-Credit-Reporting/2025-02-14 ACDV Response.pdf | zips/acdv_batch.zip → ACDV_0214.pdf |
+
+## Flags
+- PII: full SSN visible on 2019 application (p. 2) — redact before sharing.
+- Gap: payment history skips Sep–Nov 2024 — pages may be missing.</code></pre>
+          <p class="copy-source-link">Reusable recipe lives at <a href="../recipes/organize-case-file.md">recipes/organize-case-file.md</a>.</p>
+        </div>
+      </details>
+    </section>
+
+    <hr class="hairline">
+
+    <section class="detail-section">
+      <h2>Why it matters</h2>
+      <p>Two payoffs. First, you can find anything in seconds, and the timeline is reconstructed for you. Second — and this is the part that compounds — the manifest and timeline are a real <strong>index</strong>. The next workflow drafts from that index instead of re-reading every PDF, so the work you do here pays off again every time you draft. <a href="draft-from-case-file.html">See how →</a></p>
+    </section>
+
+    <nav class="page-footer-nav">
+      <a href="document-digest.html" data-key-prev>← Document Digest</a>
+      <a href="draft-from-case-file.html" data-key-next>Draft from Case File →</a>
+    </nav>
+  </main>
+  <script type="module" src="../js/main.js"></script>
+</body>
+</html>

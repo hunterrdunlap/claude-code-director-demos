@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document Digest · Vibe Coding with Claude Code</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles/main.css">
+</head>
+<body data-page="document-digest">
+  <header class="topbar">
+    <div class="brand">
+      <img src="../assets/nelnet-wordmark.svg" alt="Nelnet" onerror="this.replaceWith(Object.assign(document.createElement('span'),{textContent:'Nelnet'}));">
+    </div>
+    <nav>
+      <a href="legal-data-handling.html" class="nav-prev" data-key-prev>← Working safely</a>
+      <a href="organize-case-file.html" class="nav-next" data-key-next>next →</a>
+    </nav>
+  </header>
+  <main class="container detail">
+    <header class="detail-header">
+      <h1>📄 Document Digest</h1>
+      <div class="built-from">
+        <span class="built-from__label">Built from</span>
+        <a class="tool-chip" href="../tools.html#files-and-commands"><span class="tool-chip__icon">📁</span> Files &amp; commands</a>
+        <a class="tool-chip" href="../tools.html#sub-agents"><span class="tool-chip__icon">🤝</span> Sub-agents</a>
+      </div>
+    </header>
+
+    <section class="detail-section">
+      <h2>What you'll do</h2>
+      <p>Drop <strong>one long document</strong> — a contract, deposition transcript, brief, or regulatory filing — into a folder, paste one prompt into Claude Cowork, and get back a <strong>structured digest</strong> plus a <strong>timeline</strong>. Every claim cites the page it came from, so you can check it. This is the headline of the set: it turns an hour of reading into a faster first pass — a digest you still verify against the pages it cites.</p>
+      <div class="preview-frame">
+        <div class="preview-placeholder">outputs/DIGEST.md — parties, key terms, deadlines, risks, open questions; every line page-cited.</div>
+      </div>
+    </section>
+
+    <hr class="hairline">
+
+    <section class="detail-section">
+      <h2>What you'll need</h2>
+      <ul class="needs-list">
+        <li>Claude Cowork open on an approved, no-training tier (see <a href="legal-data-handling.html">Working safely with client data</a>)</li>
+        <li>A working folder with an <code>inbox/</code> subfolder, and one digital document inside it (text selectable, not a scan)</li>
+        <li>An empty <code>outputs/</code> subfolder for the results (Cowork will create it if missing)</li>
+      </ul>
+    </section>
+
+    <hr class="hairline">
+
+    <section class="detail-section">
+      <h2>Step 1 — Drop in one document</h2>
+      <p>Put a single document in <code>inbox/</code>. Keep it to one file per run — the digest is built for depth on one document, not breadth across many. The original is never modified or moved; Cowork only reads it.</p>
+    </section>
+
+    <section class="detail-section">
+      <h2>Step 2 — Paste this into Cowork</h2>
+      <p>Open Claude Cowork in your working folder and paste the prompt below. It's ready to run as-is — if anything is unclear (more than one file in <code>inbox/</code>, or a scanned document with no selectable text), Claude will ask before going ahead rather than guess.</p>
+      <pre class="prompt-block"><button class="copy-btn copy-btn--light" data-copy-from="parent-pre" type="button" aria-label="Copy prompt">📋 Copy</button>Read the document I want digested — the single file in the inbox/ folder (or if there's no inbox/ folder, the one document in this folder). It's a long legal document — a contract, deposition transcript, brief, or regulatory filing.
+
+Do this:
+- Read the whole document. Tell me the page count first, and confirm the text is selectable (not a scan).
+- If it's long (more than ~20 pages), read it section by section using sub-agents in parallel, then combine the section summaries so nothing in the middle is missed. If it's short, just read it straight through.
+- Write outputs/DIGEST.md with these sections: Document &amp; parties; Key terms &amp; obligations; Deadlines &amp; dates; Risks &amp; unusual clauses; Open questions. End every point with the page it came from, like (p. 14).
+- Write outputs/TIMELINE.md — every dated event, in order, each citing its page.
+
+Rules:
+- Don't make anything up. If the document doesn't say it, don't write it.
+- If a passage is ambiguous or you're unsure, put it under "Open questions" with the page number instead of guessing.
+- Leave the original file in inbox/ untouched.
+- End the digest with: "Attorney review required before any external use. Verify every citation against the source document."
+
+If anything is unclear — more than one file in inbox/, or a scanned document with no selectable text — ask me before going ahead.</pre>
+    </section>
+
+    <section class="detail-section">
+      <h2>What Cowork does</h2>
+      <p>For a long document, Claude doesn't read front-to-back in one pass. It splits the document into sections and hands each one to its own <strong>sub-agent</strong>; they read in parallel, then a final pass stitches their summaries together. That's why the middle of a 90-page agreement doesn't get lost. Here's what you'll watch:</p>
+      <pre class="terminal" data-terminal><button class="copy-btn" data-copy-from="parent-pre" type="button" aria-label="Copy output">📋 Copy</button><code><span class="output">Reading inbox/Settlement-Agreement.pdf … 84 pages, text selectable
+Splitting into 6 sections
+Dispatching 6 section readers in parallel:
+  ├─ §1  Recitals &amp; parties ............ done
+  ├─ §2  Payment terms ................. done
+  ├─ §3  Representations &amp; warranties .. done
+  ├─ §4  Indemnification ............... done
+  ├─ §5  Termination ................... done
+  └─ §6  Governing law &amp; signatures .... done
+Combining 6 section summaries — nothing in the middle dropped
+Wrote outputs/DIGEST.md   — every point cites a page
+Wrote outputs/TIMELINE.md — 11 dated events
+⚠ Flagged 3 passages for attorney review</span></code></pre>
+    </section>
+
+    <section class="detail-section">
+      <h2>What you get</h2>
+      <p>A digest you skim, then verify against the pages it cites — and a timeline you can drop into a chronology.</p>
+      <details class="reveal">
+        <summary>What outputs/DIGEST.md looks like</summary>
+        <div class="reveal__body">
+          <p>Plain markdown, every claim tied to a page:</p>
+          <pre class="terminal terminal--file" data-file-path="outputs/DIGEST.md"><button class="copy-btn" data-copy-from="parent-pre" type="button" aria-label="Copy file content">📋 Copy</button><code># Digest — Settlement Agreement
+
+## Document &amp; parties
+- Settlement and release agreement between Acme Servicing LLC and J. Borrower. (p. 1)
+- Effective date: 2025-03-01. (p. 1)
+
+## Key terms &amp; obligations
+- Acme to credit the account $4,200 and correct the tradeline within 30 days. (p. 3)
+- Borrower to dismiss the pending complaint with prejudice. (p. 4)
+
+## Deadlines &amp; dates
+- Tradeline correction due 2025-03-31 (30 days from effective date). (p. 3)
+- Release effective only upon payment clearing. (pp. 4–5)
+
+## Risks &amp; unusual clauses
+- Non-disparagement clause is mutual but unusually broad. (p. 6)
+- No-admission-of-liability language carved out for regulatory inquiries. (p. 6)
+
+## Open questions
+- "Account" is defined two ways (recitals vs. §2) — confirm which controls. (pp. 1, 3)  [low confidence — flagged]
+- Governing-law clause names a state but no venue. (p. 7)
+
+---
+Attorney review required before any external use. Verify every citation against the source document.</code></pre>
+          <p class="copy-source-link">Reusable recipe lives at <a href="../recipes/document-digest.md">recipes/document-digest.md</a>.</p>
+        </div>
+      </details>
+    </section>
+
+    <hr class="hairline">
+
+    <section class="detail-section">
+      <h2>Make it reusable</h2>
+      <p>If you run this often, you don't have to paste the prompt every time. A power user can save it as a reusable <strong>skill</strong> in Cowork (or a <code>/document-digest</code> command in Claude Code) so it's one click. The text in <a href="../recipes/document-digest.md">recipes/document-digest.md</a> is that saved version, ready to drop in.</p>
+    </section>
+
+    <section class="detail-section">
+      <h2>Why it matters</h2>
+      <p>The hard part of a long document isn't reading it once — it's not losing the clause on page 52 that changes everything. The section-by-section fan-out reads the whole thing without dropping the middle, and the page cites turn "trust me" into "check page 52." You stay the reviewer; Claude just gets you to the right pages faster.</p>
+    </section>
+
+    <nav class="page-footer-nav">
+      <a href="legal-data-handling.html" data-key-prev>← Working safely</a>
+      <a href="organize-case-file.html" data-key-next>Organize Case File →</a>
+    </nav>
+  </main>
+  <script type="module" src="../js/main.js"></script>
+</body>
+</html>
