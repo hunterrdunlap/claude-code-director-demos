@@ -15,8 +15,8 @@
       <img src="../assets/nelnet-wordmark.svg" alt="Nelnet" onerror="this.replaceWith(Object.assign(document.createElement('span'),{textContent:'Nelnet'}));">
     </div>
     <nav>
-      <a href="legal-data-handling.html" class="nav-prev" data-key-prev>← Working safely</a>
-      <a href="organize-case-file.html" class="nav-next" data-key-next>next →</a>
+      <a href="long-context.html" class="nav-prev" data-key-prev>← Long-Context</a>
+      <a href="organize-files.html" class="nav-next" data-key-next>next →</a>
     </nav>
   </header>
   <main class="container detail">
@@ -31,7 +31,7 @@
 
     <section class="detail-section">
       <h2>What you'll do</h2>
-      <p>Drop <strong>one long document</strong> — a contract, deposition transcript, brief, or regulatory filing — into a folder, paste one prompt into Claude Cowork, and get back a <strong>structured digest</strong> plus a <strong>timeline</strong>. Every claim cites the page it came from, so you can check it. This is the headline of the set: it turns an hour of reading into a faster first pass — a digest you still verify against the pages it cites.</p>
+      <p>Drop <strong>one long document</strong> — a contract, report, transcript, or filing — into a folder, paste one prompt into Claude, and get back a <strong>structured digest</strong> plus a <strong>timeline</strong>. Every claim cites the page it came from, so you can check it. It turns an hour of reading into a faster first pass — a digest you still verify against the pages it cites.</p>
       <div class="preview-frame">
         <div class="preview-placeholder">outputs/DIGEST.md — parties, key terms, deadlines, risks, open questions; every line page-cited.</div>
       </div>
@@ -42,7 +42,7 @@
     <section class="detail-section">
       <h2>What you'll need</h2>
       <ul class="needs-list">
-        <li>Claude Cowork open on an approved, no-training tier (see <a href="legal-data-handling.html">Working safely with client data</a>)</li>
+        <li>Claude Code or Claude Cowork</li>
         <li>A working folder with an <code>inbox/</code> subfolder, and one digital document inside it (text selectable, not a scan)</li>
         <li>An empty <code>outputs/</code> subfolder for the results (Cowork will create it if missing)</li>
       </ul>
@@ -52,13 +52,69 @@
 
     <section class="detail-section">
       <h2>Step 1 — Drop in one document</h2>
-      <p>Put a single document in <code>inbox/</code>. Keep it to one file per run — the digest is built for depth on one document, not breadth across many. The original is never modified or moved; Cowork only reads it.</p>
+      <p>Put a single document in <code>inbox/</code>. Keep it to one file per run — the digest is built for depth on one document, not breadth across many. The original is never modified or moved; Claude only reads it.</p>
     </section>
 
     <section class="detail-section">
-      <h2>Step 2 — Paste this into Cowork</h2>
-      <p>Open Claude Cowork in your working folder and paste the prompt below. It's ready to run as-is — if anything is unclear (more than one file in <code>inbox/</code>, or a scanned document with no selectable text), Claude will ask before going ahead rather than guess.</p>
-      <pre class="prompt-block"><button class="copy-btn copy-btn--light" data-copy-from="parent-pre" type="button" aria-label="Copy prompt">📋 Copy</button>Read the document I want digested — the single file in the inbox/ folder (or if there's no inbox/ folder, the one document in this folder). It's a long legal document — a contract, deposition transcript, brief, or regulatory filing.
+      <h2>Paste this into Claude</h2>
+      <p>Pick an example. The generic version asks you what you need first; the legal version is a worked case-file example.</p>
+      <div class="tabs" data-tabs>
+        <div class="tabs__list" role="tablist" aria-label="Choose an example">
+          <button class="tabs__tab is-active" role="tab" id="tab-generic" aria-controls="panel-generic" aria-selected="true" data-tab="generic" type="button">Generic — any long document</button>
+          <button class="tabs__tab" role="tab" id="tab-legal" aria-controls="panel-legal" aria-selected="false" tabindex="-1" data-tab="legal" type="button">Legal example</button>
+        </div>
+
+        <div class="tabs__panel is-active" role="tabpanel" id="panel-generic" aria-labelledby="tab-generic" data-panel="generic">
+          <pre class="prompt-block"><button class="copy-btn copy-btn--light" data-copy-from="parent-pre" type="button" aria-label="Copy prompt">📋 Copy</button>I have one long document I need to get on top of fast. Before you dig in, ask me 2-4 quick questions to understand what I need — what kind of document this is, what I'm trying to get out of it, which details matter most, and what format I want back. Wait for my answers.
+
+Then:
+- Read the whole document. Tell me the page count first.
+- If it's long (more than ~20 pages), read it section by section using sub-agents in parallel, then combine the section summaries so nothing in the middle is missed.
+- Write a structured summary in the format I asked for, plus a timeline of any dated events. End every point with the page it came from, like (p. 14).
+
+Don't make anything up. If a passage is ambiguous, flag it for me to check rather than guessing.</pre>
+          <p>Claude opens by interviewing you, then fans out:</p>
+          <pre class="terminal" data-terminal><button class="copy-btn" data-copy-from="parent-pre" type="button" aria-label="Copy output">📋 Copy</button><code><span class="output">A few questions before I start:
+  1. What kind of document is this?
+  2. What do you most need from it?
+  3. Which details matter most?
+  4. What format do you want back?
+[you answer]
+Reading inbox/Vendor-MSA.pdf … 62 pages, text selectable
+Long document — splitting into 5 sections
+Dispatching 5 section readers in parallel … done
+Combining section summaries — nothing in the middle dropped
+Wrote outputs/SUMMARY.md   — every point cites a page
+Wrote outputs/TIMELINE.md  — 7 dated events</span></code></pre>
+          <details class="reveal">
+            <summary>What outputs/SUMMARY.md looks like</summary>
+            <div class="reveal__body">
+              <p>Built in the format you asked for, every point tied to a page:</p>
+              <pre class="terminal terminal--file" data-file-path="outputs/SUMMARY.md"><button class="copy-btn" data-copy-from="parent-pre" type="button" aria-label="Copy file content">📋 Copy</button><code># Summary — Vendor Master Services Agreement
+
+## Document &amp; parties
+- Master services agreement between Northwind Corp (Client) and Vendor LLC. (p. 1)
+- Effective date: 2025-04-01. (p. 1)
+
+## What matters most (you asked: renewal &amp; liability)
+- Auto-renews for 12-month terms unless cancelled 60 days prior. (p. 8)
+- Liability capped at 12 months of fees; carve-out for data breach. (p. 11)
+
+## Deadlines &amp; dates
+- Non-renewal notice due 2026-01-31. (p. 8)
+
+## Open questions
+- "Fees" is defined two ways (Order Form vs. §4) — confirm which controls. (pp. 2, 5)  [flagged]
+
+---
+First-pass summary — spot-check each point against the cited pages before relying on it.</code></pre>
+              <p class="copy-source-link">Reusable recipe lives at <a href="../recipes/document-digest.md">recipes/document-digest.md</a>.</p>
+            </div>
+          </details>
+        </div>
+
+        <div class="tabs__panel" role="tabpanel" id="panel-legal" aria-labelledby="tab-legal" data-panel="legal" hidden>
+          <pre class="prompt-block"><button class="copy-btn copy-btn--light" data-copy-from="parent-pre" type="button" aria-label="Copy prompt">📋 Copy</button>Read the document I want digested — the single file in the inbox/ folder (or if there's no inbox/ folder, the one document in this folder). It's a long legal document — a contract, deposition transcript, brief, or regulatory filing.
 
 Do this:
 - Read the whole document. Tell me the page count first, and confirm the text is selectable (not a scan).
@@ -73,12 +129,8 @@ Rules:
 - End the digest with: "Attorney review required before any external use. Verify every citation against the source document."
 
 If anything is unclear — more than one file in inbox/, or a scanned document with no selectable text — ask me before going ahead.</pre>
-    </section>
-
-    <section class="detail-section">
-      <h2>What Cowork does</h2>
-      <p>For a long document, Claude doesn't read front-to-back in one pass. It splits the document into sections and hands each one to its own <strong>sub-agent</strong>; they read in parallel, then a final pass stitches their summaries together. That's why the middle of a 90-page agreement doesn't get lost. Here's what you'll watch:</p>
-      <pre class="terminal" data-terminal><button class="copy-btn" data-copy-from="parent-pre" type="button" aria-label="Copy output">📋 Copy</button><code><span class="output">Reading inbox/Settlement-Agreement.pdf … 84 pages, text selectable
+          <p>For a long document, Claude doesn't read front-to-back in one pass. It splits the document into sections and hands each one to its own <strong>sub-agent</strong>; they read in parallel, then a final pass stitches their summaries together. That's why the middle of a 90-page agreement doesn't get lost. Here's what you'll watch:</p>
+          <pre class="terminal" data-terminal><button class="copy-btn" data-copy-from="parent-pre" type="button" aria-label="Copy output">📋 Copy</button><code><span class="output">Reading inbox/Settlement-Agreement.pdf … 84 pages, text selectable
 Splitting into 6 sections
 Dispatching 6 section readers in parallel:
   ├─ §1  Recitals &amp; parties ............ done
@@ -91,16 +143,11 @@ Combining 6 section summaries — nothing in the middle dropped
 Wrote outputs/DIGEST.md   — every point cites a page
 Wrote outputs/TIMELINE.md — 11 dated events
 ⚠ Flagged 3 passages for attorney review</span></code></pre>
-    </section>
-
-    <section class="detail-section">
-      <h2>What you get</h2>
-      <p>A digest you skim, then verify against the pages it cites — and a timeline you can drop into a chronology.</p>
-      <details class="reveal">
-        <summary>What outputs/DIGEST.md looks like</summary>
-        <div class="reveal__body">
-          <p>Plain markdown, every claim tied to a page:</p>
-          <pre class="terminal terminal--file" data-file-path="outputs/DIGEST.md"><button class="copy-btn" data-copy-from="parent-pre" type="button" aria-label="Copy file content">📋 Copy</button><code># Digest — Settlement Agreement
+          <details class="reveal">
+            <summary>What outputs/DIGEST.md looks like</summary>
+            <div class="reveal__body">
+              <p>Plain markdown, every claim tied to a page:</p>
+              <pre class="terminal terminal--file" data-file-path="outputs/DIGEST.md"><button class="copy-btn" data-copy-from="parent-pre" type="button" aria-label="Copy file content">📋 Copy</button><code># Digest — Settlement Agreement
 
 ## Document &amp; parties
 - Settlement and release agreement between Acme Servicing LLC and J. Borrower. (p. 1)
@@ -124,9 +171,11 @@ Wrote outputs/TIMELINE.md — 11 dated events
 
 ---
 Attorney review required before any external use. Verify every citation against the source document.</code></pre>
-          <p class="copy-source-link">Reusable recipe lives at <a href="../recipes/document-digest.md">recipes/document-digest.md</a>.</p>
+              <p class="copy-source-link">Reusable recipe lives at <a href="../recipes/document-digest.md">recipes/document-digest.md</a>. Same recipe, shown here filled in for a case file.</p>
+            </div>
+          </details>
         </div>
-      </details>
+      </div>
     </section>
 
     <hr class="hairline">
@@ -142,8 +191,8 @@ Attorney review required before any external use. Verify every citation against 
     </section>
 
     <nav class="page-footer-nav">
-      <a href="legal-data-handling.html" data-key-prev>← Working safely</a>
-      <a href="organize-case-file.html" data-key-next>Organize Case File →</a>
+      <a href="long-context.html" data-key-prev>← Long-Context</a>
+      <a href="organize-files.html" data-key-next>Organize Files →</a>
     </nav>
   </main>
   <script type="module" src="../js/main.js"></script>
