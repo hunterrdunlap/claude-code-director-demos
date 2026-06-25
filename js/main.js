@@ -12,6 +12,8 @@ const navigate = (selector) => {
 const onKey = (event) => {
   if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
   if (isTextInput(document.activeElement)) return;
+  if (document.activeElement && document.activeElement.closest &&
+      document.activeElement.closest('.tabs__list')) return;
   if (event.key === 'ArrowRight') navigate('[data-key-next]');
   if (event.key === 'ArrowLeft') navigate('[data-key-prev]');
 };
@@ -59,3 +61,25 @@ const onCopyClick = async (event) => {
 };
 
 document.addEventListener('click', onCopyClick);
+
+// ----- Tabs -----
+
+const onTabClick = (event) => {
+  const tab = event.target.closest('.tabs__tab');
+  if (!tab) return;
+  const tabs = tab.closest('.tabs');
+  if (!tabs) return;
+  const key = tab.dataset.tab;
+  tabs.querySelectorAll('.tabs__tab').forEach((t) => {
+    const active = t === tab;
+    t.classList.toggle('is-active', active);
+    t.setAttribute('aria-selected', active ? 'true' : 'false');
+    t.tabIndex = active ? 0 : -1;
+  });
+  tabs.querySelectorAll('.tabs__panel').forEach((p) => {
+    p.hidden = p.dataset.panel !== key;
+    p.classList.toggle('is-active', p.dataset.panel === key);
+  });
+};
+
+document.addEventListener('click', onTabClick);

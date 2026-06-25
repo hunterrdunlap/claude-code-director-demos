@@ -728,3 +728,32 @@ code {
 .tool-chip__icon {
   font-size: 1rem;
 }
+
+/* ============================================================
+   Tabs (example switcher)
+   ============================================================ */
+.tabs { margin: 1.25rem 0; }
+.tabs__list {
+  display: flex;
+  gap: 0.25rem;
+  border-bottom: 1px solid #e2e8f0;
+  margin-bottom: 1.25rem;
+}
+.tabs__tab {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  padding: 0.5rem 0.9rem;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+}
+.tabs__tab:hover { color: var(--text-dark); }
+.tabs__tab.is-active { color: var(--claude-coral); border-bottom-color: var(--claude-coral); }
+.tabs__tab:focus-visible { outline: 0; box-shadow: var(--focus-ring); border-radius: 0.25rem; }
+.tabs__panel[hidden] { display: none; }
