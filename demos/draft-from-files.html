@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Draft from Files · Vibe Coding with Claude Code</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles/main.css">
+</head>
+<body data-page="draft-from-files">
+  <header class="topbar">
+    <div class="brand">
+      <img src="../assets/nelnet-wordmark.svg" alt="Nelnet" onerror="this.replaceWith(Object.assign(document.createElement('span'),{textContent:'Nelnet'}));">
+    </div>
+    <nav>
+      <a href="organize-files.html" class="nav-prev" data-key-prev>← Organize Files</a>
+      <a href="../demos.html" class="nav-next" data-key-next>back to demos →</a>
+    </nav>
+  </header>
+  <main class="container detail">
+    <header class="detail-header">
+      <h1>✍️ Draft from Files</h1>
+      <div class="built-from">
+        <span class="built-from__label">Built from</span>
+        <a class="tool-chip" href="../tools.html#files-and-commands"><span class="tool-chip__icon">📁</span> Files &amp; commands</a>
+        <a class="tool-chip" href="../tools.html#sub-agents"><span class="tool-chip__icon">🤝</span> Sub-agents</a>
+        <a class="tool-chip" href="../tools.html#persistent-memory"><span class="tool-chip__icon">🧠</span> Persistent memory</a>
+      </div>
+    </header>
+
+    <section class="detail-section">
+      <h2>What you'll do</h2>
+      <p>Take a folder of material you've already organized and have Claude <strong>draft work-product from it</strong> — a memo, a chronology, a summary, or a demand-letter draft. The trick: Claude works from the <strong>index</strong> the organize step built (the manifest and timeline), not by re-reading every document. Every factual statement in the draft cites the source document it came from, so you can check it. This is where organizing pays off.</p>
+      <div class="preview-frame">
+        <div class="preview-placeholder">organized/ index → drafts/, every line citing a source document.</div>
+      </div>
+    </section>
+
+    <hr class="hairline">
+
+    <section class="detail-section">
+      <h2>What you'll need</h2>
+      <ul class="needs-list">
+        <li>Claude Code or Claude Cowork open on an approved, no-training tier</li>
+        <li>An <code>organized/</code> folder from the <a href="organize-files.html">Organize Files</a> step — with its <code>README.md</code> and <code>TIMELINE.md</code></li>
+        <li>A sense of what you want drafted (Claude will ask if you don't say)</li>
+      </ul>
+    </section>
+
+    <hr class="hairline">
+
+    <section class="detail-section">
+      <h2>Examples</h2>
+
+      <div class="tabs" data-tabs>
+        <div class="tabs__list" role="tablist" aria-label="Choose an example">
+          <button class="tabs__tab is-active" role="tab" id="tab-generic" aria-controls="panel-generic" aria-selected="true" data-tab="generic" type="button">Generic — any organized material</button>
+          <button class="tabs__tab" role="tab" id="tab-legal" aria-controls="panel-legal" aria-selected="false" tabindex="-1" data-tab="legal" type="button">Legal example</button>
+        </div>
+
+        <div class="tabs__panel is-active" role="tabpanel" id="panel-generic" aria-labelledby="tab-generic" data-panel="generic">
+          <pre class="prompt-block"><button class="copy-btn copy-btn--light" data-copy-from="parent-pre" type="button" aria-label="Copy prompt">📋 Copy</button>I have an organized/ folder of material I want to draft from. Before you start, ask me 2-4 questions — what I want drafted, who it's for, the sections it needs, and how to cite sources. Wait for my answers.
+
+Then:
+- Read the index first (organized/README.md and organized/TIMELINE.md) to get the map of the material.
+- Fan out sub-agents in parallel — one per theme the draft needs — each reading only the relevant files and bringing back facts with their source.
+- Assemble the draft into drafts/. After every factual statement, cite the source file it came from.
+- List anything I asked for that the material doesn't support.
+
+Every fact must come from the material — if it's not there, don't write it, list it as a gap. Draft only; I'll review.</pre>
+          <p>Claude interviews you, then gathers support by theme:</p>
+          <pre class="terminal" data-terminal><button class="copy-btn" data-copy-from="parent-pre" type="button" aria-label="Copy output">📋 Copy</button><code><span class="output">A few questions before I start:
+  1. What do you want drafted?
+  2. Who's it for?
+  3. What sections does it need?
+  4. How should I cite sources?
+[you answer: vendor-evaluation memo for the steering committee]
+Reading the index: organized/README.md + organized/TIMELINE.md
+Fanning out sub-agents by theme, in parallel:
+  ├─ pricing ........... 6 facts
+  ├─ security .......... 9 facts
+  └─ contract terms .... 5 facts
+Assembling drafts/vendor-evaluation-memo.md — every line cites a source file
+⚠ 1 requested point unsupported by the material — listed as a gap</span></code></pre>
+          <details class="reveal">
+            <summary>What drafts/vendor-evaluation-memo.md looks like</summary>
+            <div class="reveal__body">
+              <p>Sourced line by line, with gaps called out:</p>
+              <pre class="terminal terminal--file" data-file-path="drafts/vendor-evaluation-memo.md"><button class="copy-btn" data-copy-from="parent-pre" type="button" aria-label="Copy file content">📋 Copy</button><code># Vendor Evaluation Memo — Q2
+
+## Pricing
+- Vendor LLC quoted $120k/yr on a 12-month auto-renew. (Pricing/2025-02 Rate Card.xlsx)
+
+## Security
+- SOC 2 Type II current through 2025-12. (Security/2025-03 Vendor SOC2.pdf)
+
+## Contract terms
+- Liability capped at 12 months of fees. (Contracts/2025-04 Vendor MSA.pdf)
+
+## Open gaps
+- No customer reference checks on file. [requested, not found]
+
+---
+DRAFT — review required. Verify all facts and citations against the source files before any use.</code></pre>
+              <p class="copy-source-link">Reusable recipe lives at <a href="../recipes/draft-from-files.md">recipes/draft-from-files.md</a>.</p>
+            </div>
+          </details>
+        </div>
+
+        <div class="tabs__panel" role="tabpanel" id="panel-legal" aria-labelledby="tab-legal" data-panel="legal" hidden>
+          <p>Paste the prompt and tell Claude what to draft. If you leave the document type blank or the ask is unclear, Claude asks one or two questions before drafting rather than guessing.</p>
+          <pre class="prompt-block"><button class="copy-btn copy-btn--light" data-copy-from="parent-pre" type="button" aria-label="Copy prompt">📋 Copy</button>I have a case file you've already organized into an organized/ folder (with README.md, TIMELINE.md, and numbered subfolders). Draft me a chronology, a dispute summary, or a demand-letter draft — I'll tell you which. If I haven't said, ask me before you start.
+
+Work from the index, not from scratch:
+- Start by reading organized/README.md and organized/TIMELINE.md to get the map of the case.
+- Then fan out sub-agents in parallel — one per theme the draft needs (for example: payment history, dispute and credit-reporting events, communications, account identifiers). Each one reads only the relevant subfolder's _README.md and the specific documents it points to, and brings back the facts, dates, and short quotes for its theme.
+- Assemble the draft into drafts/. After every factual statement, cite the source document by its organized filename, like (03-Disputes-and-Credit-Reporting/2025-02-14 ACDV Response.pdf).
+- At the end, list anything I asked about that the file doesn't support.
+
+Rules:
+- Every fact must come from a document in organized/. If it's not in the file, don't write it — list it as a gap instead.
+- Don't invent dates, quotes, names, or numbers.
+- Only write into drafts/; leave organized/ read-only.
+- End the draft with: "DRAFT — attorney review required. Verify all facts and citations against the source documents before any use or filing."
+
+If you're not sure what I want drafted, ask me one or two questions first.</pre>
+          <p>Because the index already says where everything is, Claude doesn't re-read the whole file. It reads the map, then sends a <strong>sub-agent</strong> after each theme the draft needs — they go straight to the right documents, in parallel, and bring back cited facts.</p>
+          <pre class="terminal" data-terminal><button class="copy-btn" data-copy-from="parent-pre" type="button" aria-label="Copy output">📋 Copy</button><code><span class="output">Reading the index:
+  ✓ organized/README.md  (manifest, 213 files)
+  ✓ organized/TIMELINE.md (38 dated events)
+Fanning out sub-agents by theme, in parallel:
+  ├─ payment history ............... 9 facts
+  ├─ dispute &amp; credit-reporting .... 14 facts
+  ├─ communications ................ 7 facts
+  └─ account identifiers ........... 3 facts
+Assembling drafts/chronology.md — every line cites a source document
+⚠ 2 requested points unsupported by the file — listed as gaps</span></code></pre>
+          <details class="reveal">
+            <summary>What drafts/chronology.md looks like</summary>
+            <div class="reveal__body">
+              <p>Every event traces to a document in <code>organized/</code>; gaps are called out, not glossed over:</p>
+              <pre class="terminal terminal--file" data-file-path="drafts/chronology.md"><button class="copy-btn" data-copy-from="parent-pre" type="button" aria-label="Copy file content">📋 Copy</button><code># Chronology — J. Borrower v. Acme Servicing
+
+2019-06-12  Loan originated; promissory note signed.
+            (01-Loan-Origination/2019-06-12 Promissory Note.pdf)
+2024-08-01  Forbearance approved through 2024-11-01.
+            (02-Servicing-and-Payments/2024-08-01 Forbearance Approval.pdf)
+2024-12-03  First late-payment mark reported to the bureaus.
+            (03-Disputes-and-Credit-Reporting/2024-12-03 Tradeline Update.pdf)
+2025-01-20  Borrower disputes the mark in writing.
+            (04-Correspondence/Outgoing/2025-01-20 Dispute Letter.pdf)
+2025-02-14  ACDV response verifies the disputed mark as accurate.
+            (03-Disputes-and-Credit-Reporting/2025-02-14 ACDV Response.pdf)
+
+## Gaps (not supported by the file)
+- No record of the borrower's alleged Nov 2024 phone call. [requested, not found]
+- Payment history missing Sep–Nov 2024 — cannot confirm on-time status.
+
+---
+DRAFT — attorney review required. Verify all facts and citations against the
+source documents before any use or filing.</code></pre>
+              <p class="copy-source-link">Reusable recipe lives at <a href="../recipes/draft-from-files.md">recipes/draft-from-files.md</a>. Same recipe, shown filled in for a case file.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+
+    </section>
+
+    <hr class="hairline">
+
+    <section class="detail-section">
+      <h2>Why it matters</h2>
+      <p>This is the difference between "Claude wrote something" and "Claude assembled a draft I can stand behind." It's built so every line should point to a document and gaps are called out explicitly — so your review focuses on confirming citations rather than hunting for invented facts. And because it reads the index instead of the raw file, drafting stays fast even on a folder with hundreds of documents. Organize once; draft from it again and again. One caution: the index summarizes each document — a very long file may have been read only in part — so pull the full source for anything a draft leans on heavily.</p>
+    </section>
+
+    <nav class="page-footer-nav">
+      <a href="organize-files.html" data-key-prev>← Organize Files</a>
+      <a href="../demos.html" data-key-next>Back to demos →</a>
+    </nav>
+  </main>
+  <script type="module" src="../js/main.js"></script>
+</body>
+</html>
