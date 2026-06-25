@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Long-Context Workflows · Vibe Coding with Claude Code</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles/main.css">
+</head>
+<body data-page="long-context">
+  <header class="topbar">
+    <div class="brand">
+      <img src="../assets/nelnet-wordmark.svg" alt="Nelnet" onerror="this.replaceWith(Object.assign(document.createElement('span'),{textContent:'Nelnet'}));">
+    </div>
+    <nav>
+      <a href="../demos.html" class="nav-prev" data-key-prev>← demos</a>
+      <a href="document-digest.html" class="nav-next" data-key-next>next →</a>
+    </nav>
+  </header>
+  <main class="container detail">
+    <header class="detail-header">
+      <h1>📚 Long-Context Workflows</h1>
+      <div class="built-from">
+        <span class="built-from__label">Built from</span>
+        <a class="tool-chip" href="../tools.html#files-and-commands"><span class="tool-chip__icon">📁</span> Files &amp; commands</a>
+        <a class="tool-chip" href="../tools.html#sub-agents"><span class="tool-chip__icon">🤝</span> Sub-agents</a>
+      </div>
+    </header>
+
+    <section class="detail-section">
+      <h2>When a task buries you in material</h2>
+      <p>Some work is heavy on context — a 90-page contract, a folder of 200 files, a stack of sources to draft from. Three workflows make that manageable. Each works wherever you run Claude, and each takes in far more than it could in one pass.</p>
+    </section>
+
+    <section class="detail-section">
+      <h2>What makes it work: sub-agents</h2>
+      <p>The engine is <strong>sub-agents</strong> — a team of reading assistants. Instead of reading one giant thing front-to-back (where the middle gets lost and Claude runs out of room), Claude hands each document or section to its own assistant. They read <em>at the same time</em> and hand their notes back, so hundreds of pages or files get processed in parallel and nothing in the middle falls through. <a href="../tools.html#sub-agents">More on sub-agents →</a></p>
+    </section>
+
+    <hr class="hairline">
+
+    <section class="detail-section">
+      <h2>The three workflows</h2>
+      <p>Each opens with a copy-paste block. Every page has a <strong>Generic</strong> version (Claude asks what you need first) and a <strong>Legal</strong> example.</p>
+      <div class="cards">
+        <a class="card" href="document-digest.html">
+          <div class="card__strip"></div>
+          <div class="card__body">
+            <div class="card__icon">📄</div>
+            <h2>Document Digest</h2>
+            <p>Drop one long document, get a structured, page-cited summary and a timeline.</p>
+            <div class="card__tags">
+              <span class="tag">Any long doc</span>
+              <span class="tag">Sub-agents</span>
+            </div>
+          </div>
+          <div class="card__accent"></div>
+        </a>
+        <a class="card" href="organize-files.html">
+          <div class="card__strip"></div>
+          <div class="card__body">
+            <div class="card__icon">🗂️</div>
+            <h2>Organize Files</h2>
+            <p>Point Claude at a messy folder, get an organized, indexed tree — originals untouched.</p>
+            <div class="card__tags">
+              <span class="tag">Any folder</span>
+              <span class="tag">Sub-agents</span>
+            </div>
+          </div>
+          <div class="card__accent"></div>
+        </a>
+        <a class="card" href="draft-from-files.html">
+          <div class="card__strip"></div>
+          <div class="card__body">
+            <div class="card__icon">✍️</div>
+            <h2>Draft from Files</h2>
+            <p>Turn an organized index into a cited draft — every line traceable to a source.</p>
+            <div class="card__tags">
+              <span class="tag">Any sources</span>
+              <span class="tag">Sub-agents</span>
+            </div>
+          </div>
+          <div class="card__accent"></div>
+        </a>
+      </div>
+      <p>They chain: <strong>organize → index → draft.</strong> Organizing builds an index (a manifest and a timeline); drafting reads that index instead of re-reading everything.</p>
+    </section>
+
+    <nav class="page-footer-nav">
+      <a href="../demos.html" data-key-prev>← demos</a>
+      <a href="document-digest.html" data-key-next>Document Digest →</a>
+    </nav>
+  </main>
+  <script type="module" src="../js/main.js"></script>
+</body>
+</html>
