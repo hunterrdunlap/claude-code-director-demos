@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Knowledge Base Workflows · Vibe Coding with Claude Code</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles/main.css">
+</head>
+<body data-page="knowledge-base">
+  <header class="topbar">
+    <div class="brand">
+      <img src="../assets/nelnet-wordmark.svg" alt="Nelnet" onerror="this.replaceWith(Object.assign(document.createElement('span'),{textContent:'Nelnet'}));">
+    </div>
+    <nav>
+      <a href="../demos.html" class="nav-prev" data-key-prev>← demos</a>
+      <a href="kb-personal-vault.html" class="nav-next" data-key-next>next →</a>
+    </nav>
+  </header>
+  <main class="container detail">
+    <header class="detail-header">
+      <h1>🧠 Knowledge Base Workflows</h1>
+      <div class="built-from">
+        <span class="built-from__label">Built from</span>
+        <a class="tool-chip" href="../tools.html#files-and-commands"><span class="tool-chip__icon">📁</span> Files &amp; commands</a>
+        <a class="tool-chip" href="../tools.html#persistent-memory"><span class="tool-chip__icon">🧠</span> Persistent memory</a>
+      </div>
+    </header>
+
+    <section class="detail-section">
+      <h2>When your work outlives any single chat</h2>
+      <p>Notes, sources, decisions, project history — knowledge accumulates faster than any one conversation can hold, and it needs to still be there next week. The fix isn't a database. It's a folder of plain markdown files, structured so Claude can reason over all of it. Three workflows, each a different shape of that same idea. Each works wherever you run Claude.</p>
+    </section>
+
+    <section class="detail-section">
+      <h2>What makes it work: files + a CLAUDE.md schema</h2>
+      <p>No vector database, no embeddings, no retrieval pipeline. The knowledge lives in <strong>plain markdown files you own</strong>, and a <strong><code>CLAUDE.md</code></strong> at the root teaches Claude how they're organized — the folders, the naming, the rules for where things go. So when you ask a question, Claude reads the actual files and answers from them, and every answer traces back to a file you can open and check. Unlike a black-box RAG index, you can read the whole thing in any text editor, and it travels with you in git. <a href="../tools.html#persistent-memory">More on persistent memory →</a></p>
+    </section>
+
+    <hr class="hairline">
+
+    <section class="detail-section">
+      <h2>The three workflows</h2>
+      <p>They line up by who they're for — one person, a team, or a pile of raw sources you need to make sense of. Same engine, three shapes.</p>
+      <div class="cards">
+        <a class="card" href="kb-personal-vault.html">
+          <div class="card__strip"></div>
+          <div class="card__body">
+            <div class="card__icon">📓</div>
+            <h2>Personal Vault</h2>
+            <p>A PARA folder structure for your own notes, tasks, and project logs — ask it to prep you, capture, or report status.</p>
+            <div class="card__tags">
+              <span class="tag">One person</span>
+              <span class="tag">PARA</span>
+            </div>
+          </div>
+          <div class="card__accent"></div>
+        </a>
+        <a class="card" href="kb-team-wiki.html">
+          <div class="card__strip"></div>
+          <div class="card__body">
+            <div class="card__icon">👥</div>
+            <h2>Team Wiki</h2>
+            <p>Docs-as-code, shared in git. Raw sources in, authored wiki pages out, with an index Claude keeps current.</p>
+            <div class="card__tags">
+              <span class="tag">A team</span>
+              <span class="tag">Docs-as-code</span>
+            </div>
+          </div>
+          <div class="card__accent"></div>
+        </a>
+        <a class="card" href="kb-distilled-wiki.html">
+          <div class="card__strip"></div>
+          <div class="card__body">
+            <div class="card__icon">🔮</div>
+            <h2>Distilled Wiki</h2>
+            <p>Drop raw sources in a folder; Claude distills them into short, cross-linked wiki pages you can browse and query.</p>
+            <div class="card__tags">
+              <span class="tag">Any sources</span>
+              <span class="tag">Auto-linked</span>
+            </div>
+          </div>
+          <div class="card__accent"></div>
+        </a>
+      </div>
+      <p>Pick by audience: <strong>Personal Vault</strong> for your own work, <strong>Team Wiki</strong> when a group edits together, <strong>Distilled Wiki</strong> when you have a stack of sources and want them turned into something browsable.</p>
+    </section>
+
+    <nav class="page-footer-nav">
+      <a href="../demos.html" data-key-prev>← demos</a>
+      <a href="kb-personal-vault.html" data-key-next>Personal Vault →</a>
+    </nav>
+  </main>
+  <script src="../js/main.js"></script>
+</body>
+</html>
