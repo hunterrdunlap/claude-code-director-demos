@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personal Vault · Vibe Coding with Claude Code</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles/main.css">
+</head>
+<body data-page="kb-personal-vault">
+  <header class="topbar">
+    <div class="brand">
+      <img src="../assets/nelnet-wordmark.svg" alt="Nelnet" onerror="this.replaceWith(Object.assign(document.createElement('span'),{textContent:'Nelnet'}));">
+    </div>
+    <nav>
+      <a href="knowledge-base.html" class="nav-prev" data-key-prev>← Knowledge Base</a>
+      <a href="kb-team-wiki.html" class="nav-next" data-key-next>next →</a>
+    </nav>
+  </header>
+  <main class="container detail">
+    <header class="detail-header">
+      <h1>📓 Personal Vault</h1>
+      <div class="built-from">
+        <span class="built-from__label">Built from</span>
+        <a class="tool-chip" href="../tools.html#files-and-commands"><span class="tool-chip__icon">📁</span> Files &amp; commands</a>
+        <a class="tool-chip" href="../tools.html#persistent-memory"><span class="tool-chip__icon">🧠</span> Persistent memory</a>
+      </div>
+    </header>
+
+    <section class="detail-section">
+      <h2>What you'll do</h2>
+      <p>One paste sets up a <strong>PARA vault</strong> — Inbox, Projects, Areas, Resources, Archive — with a <code>CLAUDE.md</code> that teaches Claude the capture rule: actionable goes to a task file, information goes to a log. After that you just talk to it: capture notes, get prepped for a meeting, ask what's open.</p>
+      <div class="preview-frame">
+        <div class="preview-placeholder">A folder of markdown you talk to — "capture these notes", "prep me for the NFS project", "what's open this week".</div>
+      </div>
+    </section>
+
+    <hr class="hairline">
+
+    <section class="detail-section">
+      <h2>What you'll need</h2>
+      <ul class="needs-list">
+        <li>Claude Code or Claude Cowork</li>
+        <li>An empty folder for the vault</li>
+        <li>Git — optional but recommended, for sync and history</li>
+      </ul>
+    </section>
+
+    <hr class="hairline">
+
+    <section class="detail-section">
+      <h2>Set it up</h2>
+      <p>Paste this once, in an empty folder:</p>
+      <pre class="prompt-block"><button class="copy-btn copy-btn--light" data-copy-from="parent-pre" type="button" aria-label="Copy prompt">📋 Copy</button>Set up a personal knowledge vault in this folder using the PARA method. Create this structure and nothing else yet:
+
+- 01_INBOX/           (a Capture.md for raw, untriaged notes)
+- 02_PROJECTS/        (active work — one folder per project)
+- 03_AREAS/           (ongoing responsibilities)
+- 04_RESOURCES/       (reference material)
+- 05_ARCHIVE/         (finished or dormant work)
+- TEMPLATES/          (a Project template: README.md, Tasks.md, Log.md)
+- CLAUDE.md           (the guide below)
+
+Write CLAUDE.md so a future Claude session knows how to work here. It must state:
+- The PARA folders above and what each holds.
+- Each project folder under 02_PROJECTS/ has three files: README.md (a charter — purpose, goals, stakeholders — plus a short current-status block), Tasks.md (a checklist), and Log.md (reverse-chronological, newest entry on top, dated headers).
+- The capture rule: if something is actionable it goes in a Tasks.md; if it's information it goes in a Log.md.
+- Common requests and how to handle them: "capture these notes" (route to the right project's Log.md and pull any action items into Tasks.md), "prep me for [project]" (read that project's README, Tasks, and latest Log entries and summarize), "what's the status of [project]".
+
+Then create one starter project — 02_PROJECTS/Example-Project/ — from the template so I can see the shape. Show me the finished tree when you're done.</pre>
+      <p>Claude scaffolds the vault:</p>
+      <pre class="terminal" data-terminal><button class="copy-btn" data-copy-from="parent-pre" type="button" aria-label="Copy output">📋 Copy</button><code><span class="output">Creating PARA vault …
+  01_INBOX/Capture.md
+  02_PROJECTS/Example-Project/{README.md, Tasks.md, Log.md}
+  03_AREAS/  04_RESOURCES/  05_ARCHIVE/
+  TEMPLATES/Project/{README.md, Tasks.md, Log.md}
+  CLAUDE.md  — PARA guide + capture rule + common requests
+Vault ready. Add a project with: "start a project called &lt;name&gt;"</span></code></pre>
+    </section>
+
+    <hr class="hairline">
+
+    <section class="detail-section">
+      <h2>Then use it day to day</h2>
+      <p><strong>Capture, and let Claude file it:</strong></p>
+      <pre class="prompt-block"><button class="copy-btn copy-btn--light" data-copy-from="parent-pre" type="button" aria-label="Copy prompt">📋 Copy</button>Capture this: had a call with the NFS team — we're moving the data-automation cutover to next month, and I need to send Brandon the revised timeline by Friday. File it in the right project.</pre>
+      <p><strong>Get prepped before a meeting:</strong></p>
+      <pre class="prompt-block"><button class="copy-btn copy-btn--light" data-copy-from="parent-pre" type="button" aria-label="Copy prompt">📋 Copy</button>Prep me for the NFS project. Read its README, open tasks, and the last few log entries, then give me status, what's blocking, and three talking points.</pre>
+      <p><strong>Check the week:</strong></p>
+      <pre class="prompt-block"><button class="copy-btn copy-btn--light" data-copy-from="parent-pre" type="button" aria-label="Copy prompt">📋 Copy</button>Across all projects, what tasks are open and due this week? Group them by project.</pre>
+      <details class="reveal">
+        <summary>What a project README.md looks like</summary>
+        <div class="reveal__body">
+          <p>Charter on top (why it exists), a short status block below:</p>
+          <pre class="terminal terminal--file" data-file-path="02_PROJECTS/NFS/README.md"><button class="copy-btn" data-copy-from="parent-pre" type="button" aria-label="Copy file content">📋 Copy</button><code># NFS — Nelnet Financial Services
+
+## Purpose
+Modernize NFS data automation and credit modeling so reporting is faster and auditable.
+
+## Goals
+- Automate the monthly data pull (no manual steps).
+- Stand up a credit model refresh on a repeatable schedule.
+
+## Stakeholders
+- Owner: Hunter. Sponsor: Brandon. Informed: NFS leadership.
+
+---
+
+## Status
+- Phase: Build. Last updated: 2026-06-28.
+- Current focus: data-automation cutover; timeline revision owed to Brandon.</code></pre>
+          <p class="copy-source-link">Reusable recipe lives at <a href="../recipes/kb-personal-vault.md">recipes/kb-personal-vault.md</a>.</p>
+        </div>
+      </details>
+    </section>
+
+    <hr class="hairline">
+
+    <section class="detail-section">
+      <h2>Make it reusable</h2>
+      <p>If you run this often, you don't have to paste the prompt every time. A power user can save it as a reusable <strong>skill</strong> in Cowork (or a <code>/setup-vault</code> command in Claude Code) so it's one click. The text in <a href="../recipes/kb-personal-vault.md">recipes/kb-personal-vault.md</a> is that saved version, ready to drop in.</p>
+    </section>
+
+    <section class="detail-section">
+      <h2>Why it matters</h2>
+      <p>A personal vault means Claude starts every session already knowing your projects — no re-explaining who's involved or where things stand. The structure is what makes "prep me" and "what's open" work without you doing the digging first. And because it's all plain files, it's yours: readable in any editor, portable, and tracked in git if you want history.</p>
+    </section>
+
+    <nav class="page-footer-nav">
+      <a href="knowledge-base.html" data-key-prev>← Knowledge Base</a>
+      <a href="kb-team-wiki.html" data-key-next>Team Wiki →</a>
+    </nav>
+  </main>
+  <script src="../js/main.js"></script>
+</body>
+</html>
