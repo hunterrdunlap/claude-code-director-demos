@@ -18,9 +18,10 @@ questions against it. Everything is plain markdown.
    project template (README.md, Tasks.md, Log.md), and a root `CLAUDE.md` that
    documents the structure, the capture rule, and the common requests below.
    Seed one example project so the shape is visible.
-2. **Capture.** For "capture this …": decide which project it belongs to
-   (Operations if general), append a dated entry to that project's `Log.md`
-   (newest on top), and pull any action items into its `Tasks.md`.
+2. **Capture.** For "capture this …": decide which project it belongs to (create
+   a general catch-all project if nothing fits), append a dated entry to that
+   project's `Log.md` (newest on top), and pull any action items into its
+   `Tasks.md`.
 3. **Prep.** For "prep me for [project]": read the project's `README.md`,
    `Tasks.md`, and the most recent `Log.md` entries; summarize status, blockers,
    and suggested talking points.
