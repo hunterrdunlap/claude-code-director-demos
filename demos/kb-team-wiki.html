@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Team Wiki · Vibe Coding with Claude Code</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles/main.css">
+</head>
+<body data-page="kb-team-wiki">
+  <header class="topbar">
+    <div class="brand">
+      <img src="../assets/nelnet-wordmark.svg" alt="Nelnet" onerror="this.replaceWith(Object.assign(document.createElement('span'),{textContent:'Nelnet'}));">
+    </div>
+    <nav>
+      <a href="kb-personal-vault.html" class="nav-prev" data-key-prev>← Personal Vault</a>
+      <a href="kb-distilled-wiki.html" class="nav-next" data-key-next>next →</a>
+    </nav>
+  </header>
+  <main class="container detail">
+    <header class="detail-header">
+      <h1>👥 Team Wiki</h1>
+      <div class="built-from">
+        <span class="built-from__label">Built from</span>
+        <a class="tool-chip" href="../tools.html#files-and-commands"><span class="tool-chip__icon">📁</span> Files &amp; commands</a>
+        <a class="tool-chip" href="../tools.html#persistent-memory"><span class="tool-chip__icon">🧠</span> Persistent memory</a>
+      </div>
+    </header>
+
+    <section class="detail-section">
+      <h2>What you'll do</h2>
+      <p>Set up a <strong>docs-as-code wiki</strong> a whole team shares in git — original sources land in <code>raw/</code> and are never edited; Claude writes clean <code>wiki/</code> pages from them and keeps an <code>index.md</code> current; a <code>CLAUDE.md</code> schema keeps everyone's pages consistent.</p>
+      <div class="preview-frame">
+        <div class="preview-placeholder">A git repo where raw/ holds sources untouched, wiki/ holds authored pages, and index.md always lists what's there.</div>
+      </div>
+    </section>
+
+    <hr class="hairline">
+
+    <section class="detail-section">
+      <h2>What you'll need</h2>
+      <ul class="needs-list">
+        <li>Claude Code or Claude Cowork</li>
+        <li>A git repository the team can clone</li>
+        <li>A source or two to seed it (PDF, doc, or notes)</li>
+      </ul>
+    </section>
+
+    <hr class="hairline">
+
+    <section class="detail-section">
+      <h2>Set it up</h2>
+      <p>Paste this once, in the repo:</p>
+      <pre class="prompt-block"><button class="copy-btn copy-btn--light" data-copy-from="parent-pre" type="button" aria-label="Copy prompt">📋 Copy</button>Set up a team knowledge wiki in this git repository, docs-as-code style. Create:
+
+- raw/       (original sources — PDFs, docs, exports. These are never edited.)
+- wiki/      (authored markdown pages, one topic per file)
+- index.md   (a table of contents you keep up to date)
+- CLAUDE.md  (the schema below)
+
+Write CLAUDE.md as the rulebook for the whole team, stating:
+- raw/ is immutable — sources go in, nothing gets edited there.
+- Every wiki/ page starts with a short header: a one-line summary, an owner, a last-reviewed date, and a "Sources" list linking the raw/ files it draws from.
+- Pages are one topic each and cross-link with [[wiki links]].
+- index.md lists every wiki page grouped by section, and is updated whenever a page is added or renamed.
+- The workflow for adding knowledge: drop a file in raw/, then ask Claude to "write a wiki page from raw/&lt;file&gt;" — Claude drafts wiki/&lt;topic&gt;.md with the header, cites the source, and updates index.md.
+
+Add a wiki/_template.md showing the page header, and seed index.md with an empty section list. Show me the tree when done.</pre>
+      <p>Claude scaffolds the wiki:</p>
+      <pre class="terminal" data-terminal><button class="copy-btn" data-copy-from="parent-pre" type="button" aria-label="Copy output">📋 Copy</button><code><span class="output">Scaffolding team wiki …
+  raw/            (empty — drop sources here)
+  wiki/_template.md   (page header: summary, owner, last-reviewed, Sources)
+  index.md        (sections, no pages yet)
+  CLAUDE.md       (raw/ is immutable; page header; [[links]]; index rules)
+Wiki ready. Add knowledge with: "write a wiki page from raw/&lt;file&gt;"</span></code></pre>
+    </section>
+
+    <hr class="hairline">
+
+    <section class="detail-section">
+      <h2>Then use it day to day</h2>
+      <p><strong>Turn a source into a page:</strong></p>
+      <pre class="prompt-block"><button class="copy-btn copy-btn--light" data-copy-from="parent-pre" type="button" aria-label="Copy prompt">📋 Copy</button>A new file just landed in raw/ — raw/2026-vendor-msa.pdf. Write a wiki page from it: summarize the key terms in wiki/vendor-msa.md with the standard header, cite the source pages, link any related pages, and update index.md.</pre>
+      <p><strong>Keep the index honest:</strong></p>
+      <pre class="prompt-block"><button class="copy-btn copy-btn--light" data-copy-from="parent-pre" type="button" aria-label="Copy prompt">📋 Copy</button>Rebuild index.md from what's actually in wiki/ right now — group pages by section, and flag any page whose last-reviewed date is over six months old.</pre>
+      <p><strong>Answer from the wiki:</strong></p>
+      <pre class="prompt-block"><button class="copy-btn copy-btn--light" data-copy-from="parent-pre" type="button" aria-label="Copy prompt">📋 Copy</button>What do we know about our vendor renewal terms? Answer only from the wiki, and link the pages you used.</pre>
+      <details class="reveal">
+        <summary>What a wiki page looks like</summary>
+        <div class="reveal__body">
+          <p>Standard header on top, every claim traceable to a source in raw/:</p>
+          <pre class="terminal terminal--file" data-file-path="wiki/vendor-msa.md"><button class="copy-btn" data-copy-from="parent-pre" type="button" aria-label="Copy file content">📋 Copy</button><code># Vendor MSA — Key Terms
+
+&gt; Summary: Master services agreement with Vendor LLC; auto-renews yearly, liability capped at 12 months' fees.
+&gt; Owner: Hunter · Last reviewed: 2026-06-30
+&gt; Sources: [[raw/2026-vendor-msa.pdf]]
+
+## Term &amp; renewal
+- Auto-renews for 12-month terms unless cancelled 60 days prior. (raw MSA, p. 8)
+
+## Liability
+- Capped at 12 months of fees; carve-out for data breach. (raw MSA, p. 11)
+
+## Related
+- [[data-processing-addendum]] · [[vendor-contacts]]</code></pre>
+          <p class="copy-source-link">Reusable recipe lives at <a href="../recipes/kb-team-wiki.md">recipes/kb-team-wiki.md</a>.</p>
+        </div>
+      </details>
+    </section>
+
+    <hr class="hairline">
+
+    <section class="detail-section">
+      <h2>Make it reusable</h2>
+      <p>If you run this often, you don't have to paste the prompt every time. A power user can save it as a reusable <strong>skill</strong> in Cowork (or a <code>/wiki-page</code> command in Claude Code) so any teammate runs it the same way. The text in <a href="../recipes/kb-team-wiki.md">recipes/kb-team-wiki.md</a> is that saved version, ready to drop in.</p>
+    </section>
+
+    <section class="detail-section">
+      <h2>Why it matters</h2>
+      <p>Because sources stay in <code>raw/</code> and pages carry their source links, the wiki is auditable, not just tidy. The <code>CLAUDE.md</code> schema means every teammate's pages look the same and the index never drifts. And because it's a git repo, it reviews and rolls back like code.</p>
+    </section>
+
+    <nav class="page-footer-nav">
+      <a href="kb-personal-vault.html" data-key-prev>← Personal Vault</a>
+      <a href="kb-distilled-wiki.html" data-key-next>Distilled Wiki →</a>
+    </nav>
+  </main>
+  <script src="../js/main.js"></script>
+</body>
+</html>
