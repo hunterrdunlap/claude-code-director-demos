@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Distilled Wiki · Vibe Coding with Claude Code</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles/main.css">
+</head>
+<body data-page="kb-distilled-wiki">
+  <header class="topbar">
+    <div class="brand">
+      <img src="../assets/nelnet-wordmark.svg" alt="Nelnet" onerror="this.replaceWith(Object.assign(document.createElement('span'),{textContent:'Nelnet'}));">
+    </div>
+    <nav>
+      <a href="kb-team-wiki.html" class="nav-prev" data-key-prev>← Team Wiki</a>
+      <a href="../demos.html" class="nav-next" data-key-next>back to demos →</a>
+    </nav>
+  </header>
+  <main class="container detail">
+    <header class="detail-header">
+      <h1>🔮 Distilled Wiki</h1>
+      <div class="built-from">
+        <span class="built-from__label">Built from</span>
+        <a class="tool-chip" href="../tools.html#files-and-commands"><span class="tool-chip__icon">📁</span> Files &amp; commands</a>
+        <a class="tool-chip" href="../tools.html#persistent-memory"><span class="tool-chip__icon">🧠</span> Persistent memory</a>
+      </div>
+    </header>
+
+    <section class="detail-section">
+      <h2>What you'll do</h2>
+      <p>Point Claude at a pile of raw sources; it distills them into short, cross-linked encyclopedia-style pages — one idea per page, <code>[[wiki links]]</code> between them, a one-line summary and tags on each. You end up with something browsable and queryable, not a folder of PDFs.</p>
+      <div class="preview-frame">
+        <div class="preview-placeholder">Drop sources in raw/ → get wiki/ full of short, linked pages, each summarizing one idea and pointing to its neighbors.</div>
+      </div>
+      <p>How this differs from the <a href="kb-team-wiki.html">Team Wiki</a>: a team wiki is <strong>authored deliberately</strong>, one page per source, for a group to read and maintain together. A distilled wiki is <strong>bulk-distilled from many sources into many small linked notes</strong>, built for fast personal sense-making. Same <code>raw/</code> → <code>wiki/</code> bones, different intent.</p>
+    </section>
+
+    <hr class="hairline">
+
+    <section class="detail-section">
+      <h2>What you'll need</h2>
+      <ul class="needs-list">
+        <li>Claude Code or Claude Cowork</li>
+        <li>A folder with several sources to distill (articles, notes, exports, PDFs)</li>
+      </ul>
+    </section>
+
+    <hr class="hairline">
+
+    <section class="detail-section">
+      <h2>Set it up</h2>
+      <p>Paste this once, in the folder:</p>
+      <pre class="prompt-block"><button class="copy-btn copy-btn--light" data-copy-from="parent-pre" type="button" aria-label="Copy prompt">📋 Copy</button>Set up a distilled wiki in this folder. Create raw/, wiki/, and a CLAUDE.md, then be ready to turn sources into notes.
+
+Write CLAUDE.md stating the distillation rules:
+- raw/ holds original sources; wiki/ holds short distilled notes. Never edit raw/.
+- Each wiki note covers ONE idea, is short (aim for under a page), and starts with a one-sentence summary and a line of #tags.
+- Notes link generously to each other with [[wiki links]] using the note's filename.
+- When distilling, split a source into as many small notes as it has distinct ideas — don't create one giant note per source.
+- Prefer linking to an existing note over duplicating a concept.
+
+Don't distill anything yet — just create the structure and the CLAUDE.md, and tell me to drop sources in raw/ and say "distill".</pre>
+      <p>Claude scaffolds the wiki:</p>
+      <pre class="terminal" data-terminal><button class="copy-btn" data-copy-from="parent-pre" type="button" aria-label="Copy output">📋 Copy</button><code><span class="output">Creating distilled wiki …
+  raw/        (drop your sources here)
+  wiki/       (distilled notes will land here)
+  CLAUDE.md   (one idea per note; summary + #tags; link with [[..]])
+Ready. Add sources to raw/, then say: "distill everything new in raw/"</span></code></pre>
+    </section>
+
+    <hr class="hairline">
+
+    <section class="detail-section">
+      <h2>Then use it day to day</h2>
+      <p><strong>Distill a fresh batch:</strong></p>
+      <pre class="prompt-block"><button class="copy-btn copy-btn--light" data-copy-from="parent-pre" type="button" aria-label="Copy prompt">📋 Copy</button>Distill everything new in raw/. Break each source into small one-idea notes in wiki/, give each a one-sentence summary and tags, and link related notes with [[wiki links]]. Tell me which notes you created and how they connect.</pre>
+      <p><strong>Ask across everything:</strong></p>
+      <pre class="prompt-block"><button class="copy-btn copy-btn--light" data-copy-from="parent-pre" type="button" aria-label="Copy prompt">📋 Copy</button>What do my notes say about interest-rate risk? Pull from every relevant note and link them so I can follow the thread.</pre>
+      <p><strong>Tidy the web of links:</strong></p>
+      <pre class="prompt-block"><button class="copy-btn copy-btn--light" data-copy-from="parent-pre" type="button" aria-label="Copy prompt">📋 Copy</button>Look over wiki/ for notes covering the same idea or missing obvious links, and suggest merges or new [[links]] — show me before changing anything.</pre>
+      <details class="reveal">
+        <summary>What a distilled note looks like</summary>
+        <div class="reveal__body">
+          <p>One idea, a summary, tags, and links out to neighbors:</p>
+          <pre class="terminal terminal--file" data-file-path="wiki/duration-risk.md"><button class="copy-btn" data-copy-from="parent-pre" type="button" aria-label="Copy file content">📋 Copy</button><code># Duration Risk
+
+&gt; Summary: Longer-duration assets lose more value when rates rise — the core rate-risk exposure in the portfolio.
+&gt; Tags: #risk #rates #portfolio
+
+Duration measures price sensitivity to rate moves: a 5-year duration means
+roughly a 5% price drop per 1% rate rise. It's the lever behind most of our
+interest-rate exposure.
+
+Managed by matching asset and liability duration — see [[asset-liability-matching]].
+Related: [[interest-rate-risk]] · [[convexity]]
+
+Source: [[raw/alm-primer.pdf]]</code></pre>
+          <p class="copy-source-link">Reusable recipe lives at <a href="../recipes/kb-distilled-wiki.md">recipes/kb-distilled-wiki.md</a>.</p>
+        </div>
+      </details>
+    </section>
+
+    <hr class="hairline">
+
+    <section class="detail-section">
+      <h2>Make it reusable</h2>
+      <p>If you run this often, you don't have to paste the prompt every time. A power user can save it as a reusable <strong>skill</strong> in Cowork (or a <code>/distill</code> command in Claude Code) so it's a one-liner as sources pile up. The text in <a href="../recipes/kb-distilled-wiki.md">recipes/kb-distilled-wiki.md</a> is that saved version, ready to drop in.</p>
+    </section>
+
+    <section class="detail-section">
+      <h2>Why it matters</h2>
+      <p>A stack of sources you'll never reread becomes a web of small notes you can actually browse and query. The <code>[[links]]</code> mean asking one question surfaces the whole neighborhood of related ideas. And because Claude reads the notes directly, answers come with the exact notes behind them — no black box.</p>
+    </section>
+
+    <nav class="page-footer-nav">
+      <a href="kb-team-wiki.html" data-key-prev>← Team Wiki</a>
+      <a href="../demos.html" data-key-next>Back to demos →</a>
+    </nav>
+  </main>
+  <script src="../js/main.js"></script>
+</body>
+</html>
